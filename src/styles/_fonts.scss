@@ -1,24 +1,45 @@
+// IMPORTS
 @font-face {
     font-family: 'Ermilow';
     src: url('../media/fonts/Ermilow/Ermilov-bold.otf');
 }
 
 @font-face {
-    font-family: 'Work-Sans-400';
-    src: url('../media/fonts/Work_Sans/WorkSans-Regular.ttf');
-}
-
-@font-face {
-    font-family: 'Work-Sans-500';
-    src: url('../media/fonts/Work_Sans/WorkSans-Medium.ttf');
-}
-
-@font-face {
-    font-family: 'Work-Sans-900';
-    src: url('../media/fonts/Work_Sans/WorkSans-Black.ttf');
-}
-
-@font-face {
     font-family: 'Jolly-Lodger-Cyrillic';
     src: url('../media/fonts/Jolly_Lodger_Cyrillic/jollylodgercyrillic.otf');
 }
+
+@font-face {
+    font-family: 'Work Sans reg';
+    src: url('../media/fonts/Work_Sans/WorkSans-Regular.ttf');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Work Sans med';
+    src: url('../media/fonts/Work_Sans/WorkSans-Medium.ttf');
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'Work Sans black';
+    src: url('../media/fonts/Work_Sans/WorkSans-Black.ttf');
+    font-weight: 900;
+}
+
+// VARIABLES
+// FONT FAMILY
+$base-font: 'Ermilow';
+$logo-font: 'Jolly-Lodger-Cyrillic';
+$regular-font: 'Work Sans reg', sans-serif;
+$nav-font: 'Work Sans med';
+$bold-font: 'Work Sans black';
+
+// FONT WEIGHT
+$reg-weight: 400;
+$med-weight: 400;
+$black-weight: 900;
+
+// FONT SIZE
+$title-font-size: 48px;
+$med-font-size: 32px;
+$main-font-size: 20px;
+$main-min-font-size: 16px;

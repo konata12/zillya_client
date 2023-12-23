@@ -1,0 +1,27 @@
+@import '../../styles/variables';
+
+.page {
+    position: relative;
+
+    h1 {
+        font-family: $base-font;
+        font-size: $title-font-size;
+
+        max-width: 684px;
+
+        span {
+            display: inline-block;
+            background-color: $secondary-color;
+        }
+    }
+
+    .definition {
+        display: flex;
+
+        p {
+            font-family: $regular-font;
+            font-size: $light-main-font-color;
+            color: $secondary-font-color;
+        }
+    }
+}

@@ -1,0 +1,47 @@
+@import '../../styles/variables';
+
+.container {
+    display: flex;
+
+    .navigation {
+        display: flex;
+        list-style: none;
+
+        li {
+
+            a {
+                color: $secondary-font-color;
+                font-family: $nav-font, sans-serif;
+                font-weight: $med-weight;
+                text-decoration: none;
+
+                display: inline-block;
+            }
+
+            .active {
+                color: $base-color;
+            }
+        }
+    }
+
+    .user {
+        display: flex;
+
+        .exit {
+            padding: 5px 18px 6px;
+            border: none;
+            background-color: $secondary-color;
+
+            a {
+                display: flex;
+            }
+        }
+
+        .login {
+            display: flex;
+            padding: 5px 18px 6px;
+            border: none;
+            background-color: $base-color;
+        }
+    }
+}

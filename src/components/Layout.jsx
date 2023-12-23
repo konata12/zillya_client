@@ -1,10 +1,10 @@
 import React from 'react'
-import { Navbar } from './Navbar'
+import { Navbar } from './navigation/Navbar'
 
 export const Layout = ({ children }) => {
     return (
         <React.Fragment>
-            <div>
+            <div className='container'>
                 <Navbar />
                 { children }
             </div>
