@@ -19,9 +19,113 @@
         display: flex;
 
         p {
-            font-family: $regular-font;
-            font-size: $light-main-font-color;
+            font-family: $reg-font;
+            font-size: $main-font-size;
             color: $secondary-font-color;
+
+            max-width: 385px;
+        }
+
+        a {
+            display: flex;
+
+            button {
+                display: flex;
+                align-items: center;
+                padding: 21px 50px;
+                cursor: pointer;
+
+                font-family: $reg-font;
+                font-size: $med-font-size;
+                font-weight: $reg-weight;
+                text-align: center;
+            }
+        }
+    }
+
+    .about {
+        
+        .section_title {
+            font-family: $base-font;
+            font-size: $med-font-size;
+
+            span {
+                color: $secondary-color;
+            }
+        }
+
+        .effects {
+            display: flex;
+
+            .effect {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 33.33%;
+
+                text-align: left;
+
+                .title {
+                    align-self: flex-start;
+                    font-family: $reg-font;
+                    font-weight: $reg-weight;
+                }
+
+                .number {
+                    align-self: flex-start;
+                    font-family: $bold-font;
+                    // font-weight: $med-weight;
+                    font-size: $med-font-size;
+                    color: $dark-main-font-color;
+                }
+
+                img {
+
+                }
+            }
+        }
+    }
+
+    .faq {
+        padding: 20px;
+
+        &_title {
+            font-family: $base-font;
+            font-size: $title-font-size;
+
+            span {
+                color: $base-color;
+            }
+        }
+
+        .product_info {
+            background-color: $border-color;
+            padding: 18px 33px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+
+            &_line {
+                display: flex;
+                align-items: center;
+
+                font-family: $bold-font;
+                font-size: $title-font-size;
+            }
+
+            &_title {
+                display: flex;
+                align-items: center;
+
+                font-family: $reg-font;
+                font-size: $med-font-size;
+            }
+
+            &_main_text {
+                font-family: $reg-font;
+                color: $secondary-font-color;
+            }
         }
     }
 }
