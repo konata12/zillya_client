@@ -73,14 +73,10 @@
 
                 .number {
                     align-self: flex-start;
-                    font-family: $bold-font;
-                    // font-weight: $med-weight;
+                    font-family: $reg-font;
+                    font-weight: $reg-weight;
                     font-size: $med-font-size;
                     color: $dark-main-font-color;
-                }
-
-                img {
-
                 }
             }
         }
@@ -98,7 +94,7 @@
             }
         }
 
-        .product_info {
+        .question {
             background-color: $border-color;
             padding: 18px 33px;
             display: flex;

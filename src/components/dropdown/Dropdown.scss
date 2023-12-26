@@ -1,0 +1,153 @@
+@import '../../styles/variables';
+
+.dropdown {
+    background-color: transparent !important;
+
+    // CONTAINER
+    &__control {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        border: 3px solid #30360D !important;
+        border-radius: 0px !important;
+        padding: 17px 33px !important;
+        -webkit-border-radius: 0px !important;
+        -moz-border-radius: 0px !important;
+        -ms-border-radius: 0px !important;
+        -o-border-radius: 0px !important;
+    }
+    &__placeholder {
+        color: $secondary-font-color !important;
+        font-family: $reg-font !important;
+        font-size: $med-font-size !important;
+
+        margin: 0 !important;
+    }
+    &__value-container {
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+    &__indicators {
+        padding: 0 !important;
+        border: none !important;
+
+        font-family: $nav-font !important;
+        font-weight: $black-weight !important;
+        font-size: $title-font-size !important;
+
+        div {
+            padding: 0 !important;
+        }
+
+        p {
+            color: $secondary-font-color !important;
+        }
+    }
+    &__indicator-separator {
+        display: none !important;
+    }
+
+    // MENU
+    &__menu {
+        background-color: transparent !important;
+    }
+    &__menu-list {
+        :first-child {
+            border-top: 3px solid #30360D !important;
+        }
+    }
+    &__option {
+        background-color: transparent !important;
+        border-left: 3px solid #30360D !important;
+        border-right: 3px solid #30360D !important;
+        border-bottom: 3px solid #30360D !important;
+        padding: 17px 33px !important;
+
+        font-family: $reg-font !important;
+        font-size: $med-font-size !important;
+        color: $secondary-font-color !important;
+
+        :first-child {
+            border-top: 3px solid #30360D !important;
+        }
+    }
+}
+
+.dropdown_reverse {
+    background-color: transparent !important;
+
+    // CONTAINER
+    &__control {
+        display: flex !important;
+        flex-direction: row-reverse !important;
+        justify-content: space-between !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        border: 3px solid #30360D !important;
+        border-radius: 0px !important;
+        padding: 17px 33px !important;
+        -webkit-border-radius: 0px !important;
+        -moz-border-radius: 0px !important;
+        -ms-border-radius: 0px !important;
+        -o-border-radius: 0px !important;
+    }
+    &__placeholder {
+        color: $secondary-font-color !important;
+        font-family: $reg-font !important;
+        font-size: $med-font-size !important;
+
+        margin: 0 !important;
+    }
+    &__value-container {
+        padding: 0 !important;
+        display: flex !important;
+        justify-content: end !important;
+    }
+    &__indicators {
+        padding: 0 !important;
+        border: none !important;
+
+        font-family: $nav-font !important;
+        font-weight: $black-weight !important;
+        font-size: $title-font-size !important;
+
+        div {
+            padding: 0 !important;
+        }
+
+        p {
+            color: $secondary-font-color !important;
+        }
+    }
+    &__indicator-separator {
+        display: none !important;
+    }
+
+    // MENU
+    &__menu {
+        background-color: transparent !important;
+    }
+    &__menu-list {
+        :first-child {
+            border-top: 3px solid #30360D !important;
+        }
+    }
+    &__option {
+        background-color: transparent !important;
+        border-left: 3px solid #30360D !important;
+        border-right: 3px solid #30360D !important;
+        border-bottom: 3px solid #30360D !important;
+        padding: 17px 33px !important;
+
+        font-family: $reg-font !important;
+        font-size: $med-font-size !important;
+        color: $secondary-font-color !important;
+
+        :first-child {
+            border-top: 3px solid #30360D !important;
+        }
+    }
+}
