@@ -18,6 +18,7 @@
         -ms-border-radius: 0px !important;
         -o-border-radius: 0px !important;
     }
+
     &__placeholder {
         color: $secondary-font-color !important;
         font-family: $reg-font !important;
@@ -25,11 +26,13 @@
 
         margin: 0 !important;
     }
+
     &__value-container {
         padding: 0 !important;
         display: flex !important;
         align-items: center !important;
     }
+
     &__indicators {
         padding: 0 !important;
         border: none !important;
@@ -46,6 +49,7 @@
             color: $secondary-font-color !important;
         }
     }
+
     &__indicator-separator {
         display: none !important;
     }
@@ -54,11 +58,13 @@
     &__menu {
         background-color: transparent !important;
     }
+
     &__menu-list {
         :first-child {
             border-top: 3px solid #30360D !important;
         }
     }
+
     &__option {
         background-color: transparent !important;
         border-left: 3px solid #30360D !important;
@@ -94,6 +100,7 @@
         -ms-border-radius: 0px !important;
         -o-border-radius: 0px !important;
     }
+
     &__placeholder {
         color: $secondary-font-color !important;
         font-family: $reg-font !important;
@@ -101,11 +108,13 @@
 
         margin: 0 !important;
     }
+
     &__value-container {
         padding: 0 !important;
         display: flex !important;
         justify-content: end !important;
     }
+
     &__indicators {
         padding: 0 !important;
         border: none !important;
@@ -122,6 +131,7 @@
             color: $secondary-font-color !important;
         }
     }
+
     &__indicator-separator {
         display: none !important;
     }
@@ -130,11 +140,13 @@
     &__menu {
         background-color: transparent !important;
     }
+
     &__menu-list {
         :first-child {
             border-top: 3px solid #30360D !important;
         }
     }
+
     &__option {
         background-color: transparent !important;
         border-left: 3px solid #30360D !important;

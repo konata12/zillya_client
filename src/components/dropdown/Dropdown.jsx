@@ -17,6 +17,7 @@ export function Dropdown({ options, reverse }) {
 
     return (
         <Select
+            menuIsOpen={1}
             placeholder={'111111'}
             isSearchable={false}
             components={{ DropdownIndicator }}
