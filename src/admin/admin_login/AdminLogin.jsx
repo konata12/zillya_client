@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom';
 // STYLES
 import styles from './adminLogin.module.scss'
 
-
-
 export function AdminLogin() {
     const navigate = useNavigate();
 

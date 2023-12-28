@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { AdminItems } from '../adminPages/adminItems/AdminItems'
 
 // STYLES
 import styles from './adminMain.module.scss'
 
 
+
 export function AdminMain() {
+    // сonst [zamovlennya, setZamovlennya] = useState(false)
+    const [adminItemsOpened, setAdminItemsOpened] = useState(false)
+
+    if (adminItemsOpened) {
+        return (
+            <AdminItems /> 
+        )
+    }
 
     return (
         <div className={styles.container}>
@@ -16,7 +26,8 @@ export function AdminMain() {
                         головні
                     </p>
                     <div className={styles.buttonsContainer}>
-                        <div className={styles.button}><p>ЗАМОВЛЕННЯ</p></div>
+                        <div className={styles.button}
+                        ><p>ЗАМОВЛЕННЯ</p></div>
                         <div className={styles.button}><p>СТАТИСТИКА</p></div>
                     </div>
                 </div>
@@ -26,7 +37,9 @@ export function AdminMain() {
                         товари
                     </p>
                     <div className={styles.buttonsContainer}>
-                        <div className={styles.button}><p>УСІ ТОВАРИ</p></div>
+                        <div className={styles.button}
+                            onClick={() => setAdminItemsOpened(true)}
+                        ><p>УСІ ТОВАРИ</p></div>
                         <div className={styles.button}><p>ДОДАТИ ТОВАР</p></div>
                     </div>
                 </div>
