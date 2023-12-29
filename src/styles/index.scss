@@ -21,3 +21,27 @@ body {
     display: flex;
     text-decoration: none;
 }
+
+.input {
+    padding: 18px 33px;
+    background-color: transparent;
+    border: 3px solid #30360D;
+
+    font-family: $reg-font;
+    font-size: $med-font-size;
+
+    &::placeholder {
+        color: $secondary-font-color;
+    }
+    &:focus {
+        outline: none;
+    }
+}
+
+.btn {
+    border: none;
+    background-color: $base-color;
+    text-decoration: none;
+
+    cursor: pointer;
+}

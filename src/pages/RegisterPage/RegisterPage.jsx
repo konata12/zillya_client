@@ -1,18 +1,34 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { checkIsAuth, registerUser } from '../../redux/auth/authSlice'
 
 // STYLES
 import styles from './RegisterPage.module.scss'
 
 // COMPONENTS
-import { Input } from '../../components/input/Input'
-import { Button } from '../../components/button/Button'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export function RegisterPage() {
-    // const [name, setName] = useState('')
-    // const [surname, setSurname] = useState('')
-    // const [password, setPassword] = useState('')
-    // const [email, setEmail] = useState('')
+    const [name, setName] = useState('')
+    const [surname, setSurname] = useState('')
+    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
+
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const handleSubmit = () => {
+        try {
+            console.log('anus')
+            dispatch(registerUser({ name, surname, password, email }))
+            setName('')
+            setSurname('')
+            setPassword('')
+            setEmail('')
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     return (
         <div className={styles.registration}>
@@ -26,19 +42,31 @@ export function RegisterPage() {
 
             <form onSubmit={e => e.preventDefault()}>
                 <div className={styles.inputs}>
-                    <Input
+                    <input
+                        onChange={e => setName(e.target.value)}
+                        value={name}
+                        className={`input`}
                         placeholder='Ім’я'
                         type='text'
                     />
-                    <Input
+                    <input
+                        onChange={e => setSurname(e.target.value)}
+                        value={surname}
+                        className={`input`}
                         placeholder='Прізвище'
                         type='text'
                     />
-                    <Input
+                    <input
+                        onChange={e => setPassword(e.target.value)}
+                        value={password}
+                        className={`input`}
                         placeholder='Пароль'
-                        type='text'
+                        type='password'
                     />
-                    <Input
+                    <input
+                        onChange={e => setEmail(e.target.value)}
+                        value={email}
+                        className={`input`}
                         placeholder='Email'
                         type='email'
                     />
@@ -48,9 +76,13 @@ export function RegisterPage() {
                     </p>
                 </div>
 
-                <Button type='submit'>
+                <button
+                    className={`btn`}
+                    onClick={handleSubmit}
+                    type='submit'
+                >
                     Зареєструватись
-                </Button>
+                </button>
             </form>
         </div>
     )
