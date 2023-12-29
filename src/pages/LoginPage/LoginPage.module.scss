@@ -1,0 +1,57 @@
+@import '../../styles/variables';
+
+.login {
+    display: flex;
+    max-width: 50%;
+
+    .form_container {
+        width: 100%;
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+
+            .title {
+                width: fit-content;
+
+                font-family: $base-font;
+                font-size: $title-font-size;
+            }
+
+            .registration_link {
+                width: fit-content;
+                display: flex;
+                align-items: end;
+                padding-bottom: 5px;
+
+                font-family: $reg-font;
+                font-size: $main-font-size;
+                color: $secondary-font-color;
+            }
+
+            input {
+                max-width: 460px;
+            }
+
+            .recovery_link {
+                width: 100%;
+
+                font-family: $base-font;
+                font-size: $main-font-size;
+                text-decoration: none;
+                color: $base-color;
+            }
+
+            button {
+                display: inline;
+                padding: 21px 54px;
+                width: fit-content;
+
+                font-family: $reg-font;
+                font-size: $med-font-size;
+            }
+        }
+    }
+}

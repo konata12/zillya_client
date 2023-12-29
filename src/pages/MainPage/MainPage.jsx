@@ -6,12 +6,12 @@ import styles from './MainPage.module.scss'
 // COMPONENTS
 import { Button } from '../../components/button/Button'
 import { Link } from 'react-router-dom'
-import { Dropdown } from '../../components/dropdown/Dropdown'
 
 // IMAGES
 import alienOne from '../../media/images/alien_1.png'
 import alienTwo from '../../media/images/alien_2.png'
 import alienThree from '../../media/images/alien_3.png'
+import Question from '../../components/question/Question'
 
 export function MainPage() {
 
@@ -81,23 +81,14 @@ export function MainPage() {
                 </p>
 
                 <div className={styles.questions}>
-                    <Dropdown
-                        options={[{ label: 1 }]}
-                    />
-                    <div className={`${styles.question} ${styles.isActive}`}>
-                        <p className={styles.question_line}>
-                            -
-                        </p>
-                        <p className={styles.question_title}>
-                            Чим відрізняються різні продукти з CBD
-                        </p>
-                        <p className={styles.question_main_text}>
-                            По-перше, концентрацією CBD у готовому продукті. Друга відмінність — джерело CBD. Продукти на основі CBD-ізоляту (чистого порошку
+                    <Question
+                        reverse={false}
+                        title={'Чим відрізняються різні продукти з CBD'}
+                        text={`По-перше, концентрацією CBD у готовому продукті. Друга відмінність — джерело CBD. Продукти на основі CBD-ізоляту (чистого порошку
                             CBD) «чисті» і не містять інших компонентів канабісу. Натомість олії full spectrum або broad spectrum отримують із конопель із низьким
                             відсотком ТНС (hemp). Такі продукти можуть містити THC, а також інші канабіноїди (крім ТНС їх понад 60 видів). Третя відмінність — носій.
-                            Ним може бути олія (конопляна, кокосова, оливкова, МСТ) або спирт. Також відрізняється вміст додаткових речовин (терпени, ароматизатори, вітаміни тощо).
-                        </p>
-                    </div>
+                            Ним може бути олія (конопляна, кокосова, оливкова, МСТ) або спирт. Також відрізняється вміст додаткових речовин (терпени, ароматизатори, вітаміни тощо).`}
+                    />
                 </div>
             </section>
         </div>

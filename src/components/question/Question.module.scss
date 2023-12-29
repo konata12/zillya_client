@@ -1,0 +1,91 @@
+@import '../../styles/variables';
+
+.question {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: transparent;
+    box-shadow: none;
+    border: 3px solid #30360D;
+    padding: 17px 33px;
+    transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+
+    &:hover .question_title {
+        color: $main-font-color;
+    }
+    &:hover .question_line {
+        color: $secondary-color;
+
+        &.isActive {
+            color: $main-font-color;
+        }
+    }
+    &.isActive {
+        background-color: $border-color;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+    &.reverse {
+        flex-direction: row-reverse;
+    }
+    
+    &_line {
+        display: flex;
+        align-items: center;
+
+        color: $secondary-font-color;
+        font-family: $bold-font;
+        font-size: $title-font-size;
+
+        transition: all 0.3s ease-out;
+        -webkit-transition: all 0.3s ease-out;
+        -moz-transition: all 0.3s ease-out;
+        -ms-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+
+        &.isActive {
+            color: $main-font-color;
+        }
+    }
+
+    &_title {
+        display: flex;
+        align-items: center;
+        color: $secondary-font-color;
+        font-family: $reg-font;
+        font-size: $med-font-size;
+        transition: all 0.3s ease-out;
+        -webkit-transition: all 0.3s ease-out;
+        -moz-transition: all 0.3s ease-out;
+        -ms-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+
+        &.isActive {
+            color: $main-font-color;
+        }
+    }
+
+    &_main_text {
+        display: none;
+        opacity: 0;
+        font-family: $reg-font;
+        color: $secondary-font-color;
+        transition: all 0.3s ease-out;
+        -webkit-transition: all 0.3s ease-out;
+        -moz-transition: all 0.3s ease-out;
+        -ms-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+
+        &.isActive {
+            display: block;
+            opacity: 1;
+        }
+    }
+}

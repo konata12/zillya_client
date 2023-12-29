@@ -4,7 +4,7 @@ import React from 'react'
 import { Layout } from './components/Layout'
 import { MainPage } from './pages/MainPage/MainPage'
 import { BacketPage } from './pages/BacketPage'
-import { LoginPage } from './pages/LoginPage'
+import { LoginPage } from './pages/LoginPage/LoginPage'
 
 // ADMIN COMPONENTS
 import { AdminLogin } from './admin/admin_login/AdminLogin'
