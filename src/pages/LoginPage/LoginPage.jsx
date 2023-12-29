@@ -6,7 +6,7 @@ import styles from './LoginPage.module.scss'
 // COMPONENTS
 import { Link } from 'react-router-dom'
 import { Button } from '../../components/button/Button'
-import Input from '../../components/input/Input'
+import { Input } from '../../components/input/Input'
 
 export function LoginPage() {
     return (
@@ -24,11 +24,11 @@ export function LoginPage() {
                     </Link>
 
                     <Input
-                        type='text'
+                        type='email'
                         placeholder='Email'
                     />
                     <Input
-                        type='text'
+                        type='password'
                         placeholder='Пароль'
                     />
 

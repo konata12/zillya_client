@@ -5,6 +5,7 @@ import { Layout } from './components/Layout'
 import { MainPage } from './pages/MainPage/MainPage'
 import { BacketPage } from './pages/BacketPage'
 import { LoginPage } from './pages/LoginPage/LoginPage'
+import { RegisterPage } from './pages/RegisterPage/RegisterPage'
 
 // ADMIN COMPONENTS
 import { AdminLogin } from './admin/admin_login/AdminLogin'
@@ -22,6 +23,7 @@ function App() {
                 <Route path='/bucket' element={<BacketPage />} />
                 <Route path='/shop' element={<ShopPage />} />
                 <Route path='/login' element={<LoginPage />} />
+                <Route path='/registration' element={<RegisterPage />} />
                 <Route path='/admin_login' element={<AdminLogin />} />
                 <Route path='/admin' element={<AdminMain />} />
             </Routes>

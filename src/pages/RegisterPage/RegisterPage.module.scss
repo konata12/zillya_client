@@ -1,0 +1,43 @@
+@import '../../styles/variables';
+
+.registration {
+
+    .title {
+        width: fit-content;
+
+        font-family: $base-font;
+        font-size: $title-font-size;
+    }
+
+    .terms {
+        font-family: $reg-font;
+        font-size: $main-font-size;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+
+        .inputs {
+            display: flex;
+            flex-wrap: wrap;
+
+            p {
+                width: 100%;
+
+                font-family: $reg-font;
+                font-size: $main-min-font-size;
+                color: $secondary-font-color;
+            }
+        }
+
+        button {
+            padding: 21px 54px;
+            width: fit-content;
+
+            font-family: $reg-font;
+            font-size: $med-font-size;
+        }
+    }
+}
