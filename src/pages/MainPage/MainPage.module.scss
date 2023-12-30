@@ -95,10 +95,37 @@
         }
     }
 
-    .question {
+    .questions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
 
-        &_one {
-            width: 50%;
+        & > div {
+
+            &:first-child {
+                width: 100%;
+            }
+            &:nth-child(2) {
+                width: 37.5%;
+            }
+            &:nth-child(3) {
+                width: 47.5%;
+            }
+            &:nth-child(4) {
+                width: 54.16%;
+            }
+            &:nth-child(5) {
+                width: 33.33%;
+            }
+            &:nth-child(6) {
+                width: 100%;
+            }
+            &:nth-child(7) {
+                width: 47.5%;
+            }
+            &:last-child {
+                width: 44.16%;
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { checkIsAuth, registerUser } from '../../redux/auth/authSlice'
+import { registerUser } from '../../redux/auth/authSlice'
 
 // STYLES
 import styles from './RegisterPage.module.scss'

@@ -1,7 +1,7 @@
 @import '../../styles/variables';
 
 .question {
-    margin-top: 200px;
+    margin-top: 50px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -20,6 +20,7 @@
     }
     &:hover .question_line {
         color: $secondary-color;
+        user-select: none;
 
         &.isActive {
             color: $main-font-color;

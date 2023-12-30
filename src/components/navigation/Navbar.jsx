@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, useNavigate } from 'react-router-dom'
 
 // STYLES
 import styles from './NavBar.module.scss'
@@ -14,10 +14,12 @@ import { checkIsAuth, logout } from '../../redux/auth/authSlice'
 export function Navbar() {
     const isAuth = useSelector(checkIsAuth)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const logoutHandler = () => {
         dispatch(logout())
         window.localStorage.removeItem('token')
+        navigate('/')
     }
 
     return (
