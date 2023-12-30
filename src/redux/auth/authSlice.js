@@ -17,7 +17,7 @@ export const registerUser = createAsyncThunk(
         console.log(password)
         console.log(email)
         try {
-            const { data } = await axios.post('/users/register', {
+            const { data } = await axios.post('/users/', {
                 name,
                 surname,
                 password,
@@ -41,7 +41,7 @@ export const loginUser = createAsyncThunk(
     async ({ password, email }) => {
         try {
             console.log({ password, email })
-            const { data } = await axios.post(`/users/login`, {
+            const { data } = await axios.post(`/users/${email}`, {
                 password,
                 email
             })
@@ -63,7 +63,7 @@ export const getMe = createAsyncThunk(
     'auth/getMe',
     async () => {
         try {
-            const { data } = await axios.get(`/users/me`)
+            const { data } = await axios.get(`/users/user`)
 
             console.log(data)
             return data
@@ -134,7 +134,7 @@ export const authSlice = createSlice({
             })
             .addCase(getMe.fulfilled, (state, action) => {
                 state.isLoading = false
-                state.status = action.payload.status
+                state.status = action.payload?.status
                 state.user = action.payload.user
                 state.token = action.payload.token
 
@@ -143,7 +143,7 @@ export const authSlice = createSlice({
             })
             .addCase(getMe.rejected, (state, action) => {
                 state.isLoading = false
-                state.status = action.payload.status
+                state.status = action.payload?.status
 
                 console.log(state.status)
             })
