@@ -1,14 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 // STYLES
 import styles from './LoginPage.module.scss'
 
 // COMPONENTS
-import { Link } from 'react-router-dom'
-import { Button } from '../../components/button/Button'
-import { Input } from '../../components/input/Input'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { loginUser } from '../../redux/auth/authSlice'
 
 export function LoginPage() {
+    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
+
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const handleSubmit = () => {
+        try {
+            console.log('anus')
+
+            dispatch(loginUser({ password, email }))
+            setPassword('')
+            setEmail('')
+            navigate('/')
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     return (
         <div className={styles.login}>
             <div className={styles.form_container}>
@@ -23,11 +42,17 @@ export function LoginPage() {
                         Не зареєстровані?
                     </Link>
 
-                    <Input
+                    <input
+                        className={`input`}
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
                         type='email'
                         placeholder='Email'
                     />
-                    <Input
+                    <input
+                        className={`input`}
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
                         type='password'
                         placeholder='Пароль'
                     />
@@ -39,11 +64,13 @@ export function LoginPage() {
                         Забули пароль?
                     </Link>
 
-                    <Button
-                        type={'submit'}
+                    <button
+                        onClick={handleSubmit}
+                        className={`btn`}
+                        type='submit'
                     >
                         Перейти далі
-                    </Button>
+                    </button>
                 </form>
             </div>
             <div>

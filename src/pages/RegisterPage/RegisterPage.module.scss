@@ -29,6 +29,10 @@
                 font-family: $reg-font;
                 font-size: $main-min-font-size;
                 color: $secondary-font-color;
+
+                &.invalid {
+                    color: red;
+                }
             }
         }
 

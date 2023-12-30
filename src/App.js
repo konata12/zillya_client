@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 // COMPONENTS
 import { Layout } from './components/Layout'
 import { MainPage } from './pages/MainPage/MainPage'
 import { BacketPage } from './pages/BacketPage'
+import { ShopPage } from './pages/ShopPage'
 import { LoginPage } from './pages/LoginPage/LoginPage'
 import { RegisterPage } from './pages/RegisterPage/RegisterPage'
 
@@ -13,9 +14,15 @@ import { AdminMain } from './admin/adminMain/AdminMain'
 
 // EXTENSIONS
 import { Route, Routes } from 'react-router-dom'
-import { ShopPage } from './pages/ShopPage'
+import { useDispatch } from 'react-redux'
+import { getMe } from './redux/auth/authSlice'
 
 function App() {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getMe())
+    }, [dispatch])
     return (
         <Layout>
             <Routes>

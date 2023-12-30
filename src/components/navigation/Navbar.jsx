@@ -17,6 +17,7 @@ export function Navbar() {
 
     const logoutHandler = () => {
         dispatch(logout())
+        window.localStorage.removeItem('token')
     }
 
     return (

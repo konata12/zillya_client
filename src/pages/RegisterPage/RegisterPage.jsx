@@ -13,6 +13,7 @@ export function RegisterPage() {
     const [surname, setSurname] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
+    const [invalidPassword, setInvalidPassword] = useState(false)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -20,11 +21,19 @@ export function RegisterPage() {
     const handleSubmit = () => {
         try {
             console.log('anus')
+            // PASSWORD VALIDATION
+            if (password.length < 8) {
+                setInvalidPassword(true)
+                return
+            }
+            setInvalidPassword(false)
+
             dispatch(registerUser({ name, surname, password, email }))
             setName('')
             setSurname('')
             setPassword('')
             setEmail('')
+            navigate('/')
         } catch (err) {
             console.log(err)
         }
@@ -48,6 +57,7 @@ export function RegisterPage() {
                         className={`input`}
                         placeholder='Ім’я'
                         type='text'
+                        required
                     />
                     <input
                         onChange={e => setSurname(e.target.value)}
@@ -55,6 +65,7 @@ export function RegisterPage() {
                         className={`input`}
                         placeholder='Прізвище'
                         type='text'
+                        required
                     />
                     <input
                         onChange={e => setPassword(e.target.value)}
@@ -62,6 +73,7 @@ export function RegisterPage() {
                         className={`input`}
                         placeholder='Пароль'
                         type='password'
+                        required
                     />
                     <input
                         onChange={e => setEmail(e.target.value)}
@@ -69,10 +81,11 @@ export function RegisterPage() {
                         className={`input`}
                         placeholder='Email'
                         type='email'
+                        required
                     />
 
-                    <p>
-                        Пароль повинен містити не менше 6 символів
+                    <p className={invalidPassword ? styles.invalid : ''}>
+                        Пароль повинен містити не менше 8 символів
                     </p>
                 </div>
 
