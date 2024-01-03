@@ -149,8 +149,8 @@ export const authSlice = createSlice({
                 state.token = action.payload.token
                 state.staff = action.payload.user?.staff
 
-                console.log(state.user)
-                console.log(state.token)
+                // console.log(state.user)
+                // console.log(state.token)
             })
             .addCase(getMe.rejected, (state, action) => {
                 state.isLoading = false

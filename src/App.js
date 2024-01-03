@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import { Layout } from './components/Layout'
 import { MainPage } from './pages/MainPage/MainPage'
 import { BacketPage } from './pages/BacketPage'
-import { ShopPage } from './pages/ShopPage'
+import { ShopPage } from './pages/ShopPage/ShopPage'
 import { LoginPage } from './pages/LoginPage/LoginPage'
 import { RegisterPage } from './pages/RegisterPage/RegisterPage'
 

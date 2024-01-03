@@ -16,10 +16,10 @@
                 text-decoration: none;
 
                 display: inline-block;
-            }
 
-            .active {
-                color: $base-color;
+                &.active {
+                    color: $base-color;
+                }
             }
         }
     }

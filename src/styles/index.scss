@@ -33,6 +33,7 @@ body {
     &::placeholder {
         color: $secondary-font-color;
     }
+
     &:focus {
         outline: none;
     }

@@ -1,0 +1,91 @@
+@import '../../styles/variables';
+
+.container {
+
+    .title {
+        font-family: $base-font;
+        font-size: $title-font-size;
+
+        span {
+            background-color: $secondary-color;
+        }
+    }
+
+    .sort {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .category {
+            font-family: $base-font;
+            font-size: $med-font-size;
+
+            span {
+                color: $base-color;
+                text-decoration: underline;
+
+                cursor: pointer;
+            }
+        }
+
+        .category_container {
+            display: none;
+            width: 100%;
+            padding: 30px 33px;
+            border: 3px solid $dark-main-font-color;
+
+            a {
+                font-family: $reg-font;
+                font-size: $main-font-size;
+                text-decoration: none;
+
+                &.active {
+                    color: $base-color;
+                }
+            }
+
+            &.isActive {
+                display: flex;
+                gap: 28px;
+            }
+        }
+
+        .sorting_container {
+            display: none;
+            width: 100%;
+        }
+    }
+
+    .products {
+        display: flex;
+        flex-wrap: wrap;
+
+        div {
+
+            // horizontal margin
+            &:nth-child(3n + 2) {
+                margin: 0 8.33%;
+            }
+
+            // vertical margin
+            &:nth-child(-n + 6) {
+                margin-bottom: 52px;
+            }
+
+            // central element top margin
+            &:nth-child(4) {
+                margin-bottom: 86px;
+            }
+
+            &:nth-child(5) {
+                margin-top: 34px;
+            }
+
+            &:nth-child(6) {
+                margin-bottom: 86px;
+            }
+        }
+    }
+
+    .pagination {}
+}
