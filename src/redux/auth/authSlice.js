@@ -6,6 +6,7 @@ const initialState = {
     token: null,
     isLoading: false,
     status: null,
+    staff: false
 }
 
 // REDUCERS
@@ -82,6 +83,7 @@ export const authSlice = createSlice({
             state.token = null
             state.isLoading = false
             state.status = null
+            state.staff = false
         }
     },
     extraReducers(builder) {
@@ -90,11 +92,13 @@ export const authSlice = createSlice({
             .addCase(registerUser.pending, (state) => {
                 state.isLoading = true
                 state.status = null
+                state.staff = false
             })
             .addCase(registerUser.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.user = action.payload.newUser
                 state.token = action.payload.token
+                state.staff = false
 
                 console.log(state.user)
                 console.log(state.token)
@@ -102,6 +106,7 @@ export const authSlice = createSlice({
             .addCase(registerUser.rejected, (state, action) => {
                 state.isLoading = false
                 state.status = action.payload.status
+                state.staff = false
 
                 console.log(state.status)
             })
@@ -110,19 +115,23 @@ export const authSlice = createSlice({
             .addCase(loginUser.pending, (state) => {
                 state.isLoading = true
                 state.status = null
+                state.staff = false
             })
             .addCase(loginUser.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.status = action.payload.status
                 state.user = action.payload.user
                 state.token = action.payload.token
+                state.staff = action.payload.user?.staff
 
                 console.log(state.user)
+                console.log(state.staff)
                 console.log(state.token)
             })
             .addCase(loginUser.rejected, (state, action) => {
                 state.isLoading = false
                 state.status = action.payload.status
+                state.staff = false
 
                 console.log(state.status)
             })
@@ -131,12 +140,14 @@ export const authSlice = createSlice({
             .addCase(getMe.pending, (state) => {
                 state.isLoading = true
                 state.status = null
+                state.staff = false
             })
             .addCase(getMe.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.status = action.payload?.status
                 state.user = action.payload.user
                 state.token = action.payload.token
+                state.staff = action.payload.user?.staff
 
                 console.log(state.user)
                 console.log(state.token)
@@ -144,6 +155,7 @@ export const authSlice = createSlice({
             .addCase(getMe.rejected, (state, action) => {
                 state.isLoading = false
                 state.status = action.payload?.status
+                state.staff = false
 
                 console.log(state.status)
             })
@@ -151,6 +163,7 @@ export const authSlice = createSlice({
 })
 
 export const checkIsAuth = (state) => Boolean(state.auth.token)
+export const checkIsStaff = (state) => Boolean(state.auth?.staff)
 
 export const { logout } = authSlice.actions
 export default authSlice.reducer

@@ -16,10 +16,16 @@ export function AdminItems() {
         try {
             const {data} = await Axios.get('/items/');
             let newData = data.items
+            console.log(data.items);
             newData.forEach(element => {
-                let newChoice = JSON.parse(element.choice.replace(/'/g, '"'))
-                element.choice = newChoice
-                newData.push(element)
+                try {
+                    let newChoice = JSON.parse(element.choice.replace(/'/g, '"'));
+                    element.choice = newChoice
+                    newData.push(element)
+                  } catch (error) {
+                    console.error('Error parsing JSON:', error);
+                  }
+
             });
             setItems(newData)
         } catch (error) {

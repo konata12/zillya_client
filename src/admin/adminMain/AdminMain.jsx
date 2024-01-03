@@ -1,18 +1,40 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AdminItems } from '../adminPages/adminItems/AdminItems'
+import { useDispatch, useSelector } from 'react-redux';
+import { checkIsStaff, getMe } from '../../redux/auth/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 // STYLES
 import styles from './adminMain.module.scss'
-
+import { Clients } from '../adminPages/adminClients/clients/Clients';
 
 
 export function AdminMain() {
-    // сonst [zamovlennya, setZamovlennya] = useState(false)
     const [adminItemsOpened, setAdminItemsOpened] = useState(false)
+    const [adminClientsOpened, setAdminClientsOpened] = useState(false)
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const isStaff = useSelector(checkIsStaff);  
+
+    useEffect(() => {
+        dispatch(getMe());
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (!isStaff) {
+          navigate('../admin_login');
+        }
+    }, []);
 
     if (adminItemsOpened) {
         return (
             <AdminItems /> 
+        )
+    }
+
+    if (adminClientsOpened) {
+        return (
+            <Clients /> 
         )
     }
 
@@ -49,7 +71,9 @@ export function AdminMain() {
                         користувачі
                     </p>
                     <div className={styles.buttonsContainer}>
-                        <div className={styles.button}><p>УСІ КЛІЄНТИ</p></div>
+                        <div className={styles.button}
+                             onClick={() => setAdminClientsOpened(true)}
+                        ><p>УСІ КЛІЄНТИ</p></div>
                     </div>
                 </div>
             </div>
