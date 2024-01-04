@@ -7,10 +7,12 @@ import { useNavigate } from 'react-router-dom';
 // STYLES
 import styles from './adminMain.module.scss'
 import { Clients } from '../adminPages/adminClients/clients/Clients';
+import { AddItem } from '../adminPages/adminAddItem/AddItem';
 
 
 export function AdminMain() {
     const [adminItemsOpened, setAdminItemsOpened] = useState(false)
+    const [addItemOpened, setAddItemOpened] = useState(false)
     const [adminClientsOpened, setAdminClientsOpened] = useState(false)
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -25,6 +27,12 @@ export function AdminMain() {
           navigate('../admin_login');
         }
     }, []);
+
+    if (addItemOpened) {
+        return (
+            <AddItem /> 
+        )
+    }
 
     if (adminItemsOpened) {
         return (
@@ -62,7 +70,9 @@ export function AdminMain() {
                         <div className={styles.button}
                             onClick={() => setAdminItemsOpened(true)}
                         ><p>УСІ ТОВАРИ</p></div>
-                        <div className={styles.button}><p>ДОДАТИ ТОВАР</p></div>
+                        <div className={styles.button}
+                            onClick={() => setAddItemOpened(true)}
+                        ><p>ДОДАТИ ТОВАР</p></div>
                     </div>
                 </div>
 

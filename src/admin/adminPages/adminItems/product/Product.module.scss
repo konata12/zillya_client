@@ -1,0 +1,49 @@
+@import '../../../../styles/variables';
+
+.product {
+    width: 27.78%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border: 3px solid $border-color;
+    padding: 30px;
+
+    img {
+        margin: auto;
+        width: 100%;
+    }
+
+    .title {
+        width: 100%;
+        margin-top: 23px;
+
+        font-family: $base-font;
+        font-size: $main-font-size;
+    }
+
+    .title_info {
+        width: 100%;
+        margin-top: 5px;
+
+        font-family: $reg-font;
+        font-size: $main-min-font-size;
+        font-weight: 100;
+        color: $secondary-font-color;
+    }
+
+    .price {
+        align-self: end;
+
+        font-family: $reg-font;
+        font-size: $main-font-size;
+        color: $secondary-color;
+    }
+
+    button {
+        padding: 13px 31px;
+        margin-top: 28px;
+
+        font-family: $reg-font;
+        font-size: $main-font-size;
+    }
+}

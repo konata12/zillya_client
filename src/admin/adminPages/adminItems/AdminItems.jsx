@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 
 // STYLES
 import styles from './adminItems.module.scss'
+import { Product } from './product/Product.jsx';
 
 
 
@@ -42,12 +43,7 @@ export function AdminItems() {
             <p className={styles.title}>Усі товари</p>
             <div className={styles.itemsWrapper}>
                 {items.map((item) => (
-                    <div className={styles.item}>
-                        <img src={item.img} alt="" />
-                        <p><span>{item.titleFstPart}</span><span>{item.titleScndPart}</span></p>
-                        <p>{item.subtitle}</p>
-                        <p>{item.choice[0].price}</p>
-                    </div>
+                   <Product product={item} />
                 ))}
             </div>
             {/*
