@@ -145,7 +145,7 @@ export const authSlice = createSlice({
             .addCase(getMe.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.status = action.payload?.status
-                state.user = action.payload.user
+                state.user = action.payload?.user
                 state.token = action.payload.token
                 state.staff = action.payload.user?.staff
 
