@@ -6,6 +6,7 @@ import styles from './ShopPage.module.scss'
 // COMPONENTS
 import { NavLink } from 'react-router-dom'
 import { Product } from '../../components/product/Product'
+import { PaginationBtn } from '../../components/paginationBtn/PaginationBtn'
 
 export function ShopPage() {
     const [categoryIsActive, setCategoryIsActive] = useState(true)
@@ -15,6 +16,7 @@ export function ShopPage() {
 
     return (
         <section className={styles.container}>
+            <PaginationBtn />
             <h1 className={styles.title}>
                 <span>Каталог</span> товарів
             </h1>
