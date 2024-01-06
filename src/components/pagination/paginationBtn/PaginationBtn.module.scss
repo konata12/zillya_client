@@ -1,0 +1,16 @@
+@import '../../../styles/variables';
+
+.btn {
+    font-family: $reg-font;
+    font-size: $main-font-size;
+    color: $secondary-font-color;
+    text-decoration: none;
+}
+
+.active {
+    font-family: $reg-font;
+    font-size: $med-font-size;
+    font-weight: 900;
+    color: $base-color;
+    text-decoration: none;
+}

@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getItems } from '../../redux/items/itemsSlice'
 
 // STYLES
 import styles from './ShopPage.module.scss'
@@ -6,13 +8,34 @@ import styles from './ShopPage.module.scss'
 // COMPONENTS
 import { NavLink } from 'react-router-dom'
 import { Product } from '../../components/product/Product'
-import { PaginationBtn } from '../../components/paginationBtn/PaginationBtn'
+import { PaginationBtn } from '../../components/pagination/paginationBtn/PaginationBtn'
+import { Pagination } from '../../components/pagination/Pagination'
+import { FilterContainer } from '../../components/pagination/filterContainer/FilterContainer'
 
 export function ShopPage() {
     const [categoryIsActive, setCategoryIsActive] = useState(true)
     const [sortIsActive, setSortIsActive] = useState(false)
 
-    console.log(categoryIsActive)
+    const dispatch = useDispatch()
+    const { page, parameter, category, items, loading } = useSelector(state => state.items)
+    console.log(page, parameter, category, items, loading)
+
+    const renderItems = () => {
+        return items.map(item => {
+            return <Product
+                key={item._id}
+                imgUrl={item.img}
+                firstTitle={item.titleFstPart}
+                secondTitle={item.titleScndPart}
+                price={item.choice[0].price}
+                discountPrice={item.discountPrice}
+            />
+        })
+    }
+
+    useEffect(() => {
+        dispatch(getItems({ page, parameter, category }))
+    }, [page, parameter, category, dispatch])
 
     return (
         <section className={styles.container}>
@@ -37,66 +60,7 @@ export function ShopPage() {
                 </p>
 
                 <div className={`${styles.category_container} ${categoryIsActive ? styles.isActive : ''}`}>
-                    <NavLink
-                        to={`/shop/`}
-                        className={({ isActive }) => isActive ? styles.active : ''}
-                    >
-                        Вейпи
-                    </NavLink>
-                    <NavLink
-                        to={'/shop'}
-                        className={({ isActive }) => isActive ? styles.active : ''}
-                    >
-                        Спрей
-                    </NavLink>
-                    <NavLink
-                        to={'/shop'}
-                        className={({ isActive }) => isActive ? styles.active : ''}
-                    >
-                        Косметика
-                    </NavLink>
-                    <NavLink
-                        to={'/shop'}
-                        className={({ isActive }) => isActive ? styles.active : ''}
-                    >
-                        Таблетки
-                    </NavLink>
-                    <NavLink
-                        to={'/shop'}
-                        className={({ isActive }) => isActive ? styles.active : ''}
-                    >
-                        Для тварин
-                    </NavLink>
-                    <NavLink
-                        to={'/shop'}
-                        className={({ isActive }) => isActive ? styles.active : ''}
-                    >
-                        Концентрати
-                    </NavLink>
-                    <NavLink
-                        to={'/shop'}
-                        className={({ isActive }) => isActive ? styles.active : ''}
-                    >
-                        Олія
-                    </NavLink>
-                    <NavLink
-                        to={'/shop'}
-                        className={({ isActive }) => isActive ? styles.active : ''}
-                    >
-                        Їжа
-                    </NavLink>
-                    <NavLink
-                        to={'/shop'}
-                        className={({ isActive }) => isActive ? styles.active : ''}
-                    >
-                        Напої
-                    </NavLink>
-                    <NavLink
-                        to={'/shop'}
-                        className={({ isActive }) => isActive ? styles.active : ''}
-                    >
-                        Пристрої
-                    </NavLink>
+                    <FilterContainer />
                 </div>
 
                 <div className={`${styles.category_container} ${sortIsActive ? styles.isActive : ''}`}>
@@ -104,20 +68,16 @@ export function ShopPage() {
                 </div>
             </div>
 
-            <div className={styles.products}>
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-            </div>
+            {
+                loading ? <p>
+                    is loading
+                </p> : (<div className={styles.products}>
+                    {renderItems()}
+                </div>)
+            }
 
             <div className={styles.pagination}>
-
+                <Pagination />
             </div>
         </section>
     )

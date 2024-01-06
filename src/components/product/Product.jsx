@@ -3,18 +3,18 @@ import React from 'react'
 // STYLES
 import styles from './Product.module.scss'
 
-export function Product() {
+export function Product({ imgUrl, firstTitle, secondTitle, price, discountPrice }) {
     return (
         <div className={styles.product}>
-            <img src="image 3.jpg" alt="" />
+            <img src={imgUrl} alt="" />
             <p className={styles.title}>
-                CBD Vape Juice (30ml)
+                {firstTitle}
             </p>
             <p className={styles.title_info}>
-                Blue Raspberry
+                {secondTitle}
             </p>
             <p className={styles.price}>
-                4013 грн
+                {discountPrice}
             </p>
             <button className={'btn'}>
                 Купити

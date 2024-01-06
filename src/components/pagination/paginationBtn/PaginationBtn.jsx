@@ -6,8 +6,11 @@ import styles from './PaginationBtn.module.scss'
 
 export function PaginationBtn() {
     return (
-        <NavLink className={({ isActive }) => isActive ? styles.active : ''}>
-            PaginationBtn
+        <NavLink
+            to={'/shop'}
+            className={({ isActive }) => isActive ? styles.active : styles.btn}
+        >
+            3
         </NavLink>
     )
 }
