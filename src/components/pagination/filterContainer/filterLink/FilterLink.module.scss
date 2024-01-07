@@ -1,0 +1,11 @@
+@import '../../../../styles/variables';
+
+.link {
+    font-family: $reg-font;
+    font-size: $main-font-size;
+    text-decoration: none;
+
+    &.active {
+        color: $base-color;
+    }
+}

@@ -34,7 +34,8 @@ export const getItems = createAsyncThunk(
             console.log(data)
             return data
         } catch (error) {
-            console.log(error)
+            Error(error.response.data.message)
+            console.log(error.response.data.message)
         }
     }
 )
@@ -42,7 +43,13 @@ export const getItems = createAsyncThunk(
 export const itemsSlice = createSlice({
     name: 'items',
     initialState,
-    reducers: {},
+    reducers: {
+        paginate(state, action) {
+            state.category = action.payload.category
+            state.parameter = action.payload.parameter
+            state.page = action.payload.page
+        }
+    },
     extraReducers(builder) {
         builder
             // GET ITEMS
@@ -52,15 +59,16 @@ export const itemsSlice = createSlice({
             })
             .addCase(getItems.fulfilled, (state, action) => {
                 state.loading = false
-                state.status = action.payload.status
-                state.items = action.payload.items
-                state.itemsNum = action.payload.itemsNum
+                state.status = action.payload?.status
+                state.items = action.payload?.items
+                state.itemsNum = action.payload?.itemsNum
             })
             .addCase(getItems.rejected, (state, action) => {
                 state.loading = false
-                state.status = action.payload.status
+                state.status = action.payload?.status
             })
     }
 })
 
+export const { paginate } = itemsSlice.actions
 export default itemsSlice.reducer

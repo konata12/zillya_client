@@ -6,9 +6,7 @@ import { getItems } from '../../redux/items/itemsSlice'
 import styles from './ShopPage.module.scss'
 
 // COMPONENTS
-import { NavLink } from 'react-router-dom'
 import { Product } from '../../components/product/Product'
-import { PaginationBtn } from '../../components/pagination/paginationBtn/PaginationBtn'
 import { Pagination } from '../../components/pagination/Pagination'
 import { FilterContainer } from '../../components/pagination/filterContainer/FilterContainer'
 
@@ -21,6 +19,11 @@ export function ShopPage() {
     console.log(page, parameter, category, items, loading)
 
     const renderItems = () => {
+        if (items === undefined || items.lenght === 0) {
+            return <div className={styles.no_products}>
+                <p>Нема таких товарів</p>
+            </div>
+        }
         return items.map(item => {
             return <Product
                 key={item._id}
@@ -32,6 +35,10 @@ export function ShopPage() {
             />
         })
     }
+    const renderPagination = () => {
+        if (items === undefined || items.lenght === 0) return ''
+        return <Pagination />
+    }
 
     useEffect(() => {
         dispatch(getItems({ page, parameter, category }))
@@ -39,7 +46,6 @@ export function ShopPage() {
 
     return (
         <section className={styles.container}>
-            <PaginationBtn />
             <h1 className={styles.title}>
                 <span>Каталог</span> товарів
             </h1>
@@ -59,25 +65,33 @@ export function ShopPage() {
                     &#160; за:
                 </p>
 
-                <div className={`${styles.category_container} ${categoryIsActive ? styles.isActive : ''}`}>
-                    <FilterContainer />
+                <div className={styles.category_container}>
+                    <FilterContainer
+                        isActive={categoryIsActive}
+                        isCategoryFilter={true}
+                    />
                 </div>
 
-                <div className={`${styles.category_container} ${sortIsActive ? styles.isActive : ''}`}>
-                    jopa
+                <div className={styles.category_container}>
+                    <FilterContainer
+                        isActive={sortIsActive}
+                        isCategoryFilter={false}
+                    />
                 </div>
             </div>
 
-            {
-                loading ? <p>
-                    is loading
-                </p> : (<div className={styles.products}>
-                    {renderItems()}
-                </div>)
-            }
+            <div className={styles.products}>
+                {
+                    loading ? <div className={styles.no_products}>
+                        <p>is loading</p>
+                    </div> : renderItems()
+                }
+            </div>
 
             <div className={styles.pagination}>
-                <Pagination />
+                {
+                    loading ? '' : renderPagination()
+                }
             </div>
         </section>
     )

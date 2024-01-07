@@ -29,25 +29,7 @@
         }
 
         .category_container {
-            display: none;
             width: 100%;
-            // padding: 30px 33px;
-            // border: 3px solid $dark-main-font-color;
-
-            // a {
-            //     font-family: $reg-font;
-            //     font-size: $main-font-size;
-            //     text-decoration: none;
-
-            //     &.active {
-            //         color: $base-color;
-            //     }
-            // }
-
-            &.isActive {
-                display: flex;
-                gap: 28px;
-            }
         }
 
         .sorting_container {
@@ -59,6 +41,19 @@
     .products {
         display: flex;
         flex-wrap: wrap;
+
+        .no_products {
+            width: 100%;
+
+            p {
+                margin: 100px auto;
+
+                font-family: $base-font;
+                font-size: $title-font-size;
+                text-align: center;
+                color: $base-color;
+            }
+        }
 
         div {
 
@@ -87,5 +82,7 @@
         }
     }
 
-    .pagination {}
+    .pagination {
+        width: 100%;
+    }
 }
