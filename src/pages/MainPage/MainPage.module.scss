@@ -77,6 +77,12 @@
                     font-weight: $reg-weight;
                     font-size: $med-font-size;
                     color: $dark-main-font-color;
+                    
+                    user-select: none;
+                }
+
+                img {
+                    user-select: none;
                 }
             }
         }

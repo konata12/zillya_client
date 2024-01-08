@@ -75,6 +75,7 @@
 
     &_main_text {
         display: none;
+        height: 0;
         opacity: 0;
         font-family: $reg-font;
         color: $secondary-font-color;
@@ -86,6 +87,7 @@
 
         &.isActive {
             display: block;
+            height: auto;
             opacity: 1;
         }
     }
