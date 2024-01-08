@@ -1,5 +1,15 @@
+@import '../../styles/variables';
+
 .container {
     display: flex;
     justify-content: center;
-    
+    align-items: center;
+    gap: 18px;
+
+    .arrow_btn {
+        font-family: $reg-font;
+        font-size: $main-font-size;
+        color: $secondary-font-color;
+        text-decoration: none;
+    }
 }

@@ -23,9 +23,9 @@ export const getItems = createAsyncThunk(
                 ''
             page = page ? '&page=' + page :
                 ''
-            console.log(parameter)
-            console.log(category)
-            console.log(page)
+            // console.log(parameter)
+            // console.log(category)
+            // console.log(page)
 
             let apiUrl = `/items/shop?${page}${category}${parameter}`
 

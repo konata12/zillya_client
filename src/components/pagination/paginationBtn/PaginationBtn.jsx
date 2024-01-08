@@ -1,18 +1,30 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { paginate } from '../../../redux/items/itemsSlice'
 
 // STYLES
 import styles from './PaginationBtn.module.scss'
 
-export function PaginationBtn() {
-    const { category, parameter } = useSelector(state => state.items)
+// COMPONENTS
+import { NavLink } from 'react-router-dom'
+
+export function PaginationBtn({ pageBtn }) {
+    let { page, category, parameter } = useSelector(state => state.items)
+    const dispatch = useDispatch()
+    // console.log(page)
+    // console.log(pageBtn)
+
+    const clickHandler = () => {
+        page = pageBtn
+        dispatch(paginate({ page, parameter, category }))
+    }
     return (
         <NavLink
             to='/shop'
-            className={({ isActive }) => isActive ? styles.active : styles.btn}
+            onClick={() => clickHandler()}
+            className={({ isActive }) => (isActive && pageBtn === page) ? styles.active : styles.btn}
         >
-            3
+            {pageBtn}
         </NavLink>
     )
 }

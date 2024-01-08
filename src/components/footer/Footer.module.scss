@@ -1,0 +1,45 @@
+@import '../../styles/variables';
+
+.container {
+    margin: 78px 0 83px;
+
+    .top {
+        display: flex;
+
+        .logo {
+            display: block;
+            margin-right: 51px;
+        }
+
+        .info {
+            padding-top: 9px;
+
+            .docs {
+
+            }
+
+            .contacts {
+                font-family: $reg-font;
+                font-size: $main-font-size;
+
+                span {
+                    display: inline-block;
+                    background-color: $base-color;
+                }
+            }
+        }
+    }
+
+    .bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        margin-top: 76px;
+
+        p {
+            font-family: $reg-font;
+            font-size: $main-min-font-size;
+            color: $secondary-font-color;
+        }
+    }
+}
