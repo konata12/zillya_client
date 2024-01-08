@@ -19,6 +19,10 @@
 
         font-family: $base-font;
         font-size: $main-font-size;
+
+        a {
+            text-decoration: none;
+        }
     }
 
     .title_info {

@@ -27,7 +27,24 @@ export const getItems = createAsyncThunk(
             // console.log(category)
             // console.log(page)
 
-            let apiUrl = `/items/shop?${page}${category}${parameter}`
+            const apiUrl = `/items/shop?${page}${category}${parameter}`
+
+            const { data } = await axios.get(apiUrl)
+
+            console.log(data)
+            return data
+        } catch (error) {
+            Error(error.response.data.message)
+            console.log(error.response.data.message)
+        }
+    }
+)
+
+export const getItem = createAsyncThunk(
+    'items/getMe',
+    async ({ id }) => {
+        try {
+            const apiUrl = `/items/item/${id}`
 
             const { data } = await axios.get(apiUrl)
 
@@ -67,6 +84,22 @@ export const itemsSlice = createSlice({
                 state.loading = false
                 state.status = action.payload?.status
             })
+
+            // GET ITEM BY ID
+            // .addCase(getItems.pending, (state) => {
+            //     state.loading = true
+            //     state.status = null
+            // })
+            // .addCase(getItems.fulfilled, (state, action) => {
+            //     state.loading = false
+            //     state.status = action.payload?.status
+            //     state.items = action.payload?.items
+            //     state.itemsNum = action.payload?.itemsNum
+            // })
+            // .addCase(getItems.rejected, (state, action) => {
+            //     state.loading = false
+            //     state.status = action.payload?.status
+            // })
     }
 })
 

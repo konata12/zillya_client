@@ -1,7 +1,8 @@
 @import '../../styles/variables';
 
-.container {
-    margin: 78px 0 83px;
+.footer {
+    padding: 78px 0 83px;
+    border-top: 3px solid $border-color;
 
     .top {
         display: flex;

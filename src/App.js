@@ -5,6 +5,7 @@ import { Layout } from './components/Layout'
 import { MainPage } from './pages/MainPage/MainPage'
 import { BacketPage } from './pages/BacketPage'
 import { ShopPage } from './pages/ShopPage/ShopPage'
+import { ProductPage } from './pages/ProductPage/ProductPage'
 import { LoginPage } from './pages/LoginPage/LoginPage'
 import { RegisterPage } from './pages/RegisterPage/RegisterPage'
 
@@ -29,6 +30,7 @@ function App() {
                 <Route path='/' element={<MainPage />} />
                 <Route path='/bucket' element={<BacketPage />} />
                 <Route path='/shop' element={<ShopPage />} />
+                <Route path='/product/:id' element={<ProductPage />} />
                 <Route path='/login' element={<LoginPage />} />
                 <Route path='/registration' element={<RegisterPage />} />
                 <Route path='/admin_login' element={<AdminLogin />} />

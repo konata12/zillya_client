@@ -1,0 +1,105 @@
+@import '../../styles/variables';
+
+.container {
+
+    .to_shop {
+        padding-bottom: 71px;
+
+        a {
+            font-family: $reg-font;
+            font-size: $main-font-size;
+            text-decoration: none;
+
+            display: flex;
+
+            span {
+                display: block;
+                align-items: center;
+
+                color: $secondary-font-color;
+
+                &:nth-child(1) {
+                    margin-top: -1px;
+                }
+            }
+        }
+    }
+
+    .product {
+        display: flex;
+        padding-bottom: 26px;
+
+        .img {
+            position: relative;
+            width: 50%;
+
+            .border {
+                position: absolute;
+                height: 100%;
+                width: 50%;
+                border-left: 3px solid $border-color;
+                border-bottom: 3px solid $border-color;
+            }
+
+            &_container {
+                padding: 0 48px 26px 43px;
+
+                img {
+                    display: block;
+                    width: 100%;
+                }
+            }
+        }
+
+        .info {
+            widows: 50%;
+
+            .title {
+                font-family: $base-font;
+                font-size: $title-font-size;
+
+                span {
+                    background-color: $secondary-color;
+                }
+            }
+
+            .subtitle {
+                font-family: $reg-font;
+                font-size: $med-font-size;
+                color: $secondary-font-color;
+            }
+
+            .choice {
+
+                span {
+                    font-family: $base-font;
+                    font-size: $main-font-size;
+                    color: $dark-main-font-color;
+
+                    cursor: pointer;
+
+                    &.active {
+                        color: $base-color;
+                    }
+                }
+            }
+
+            .prices {
+
+                .price {
+                    font-family: $reg-font;
+                    font-weight: $black-weight;
+                    font-size: $med-font-size;
+                    color: $secondary-color;
+                }
+
+                .price_before_discount {
+                    font-family: $reg-font;
+                    font-weight: $black-weight;
+                    font-size: $main-font-size;
+                    color: $border-color;
+                }
+            }
+        }
+    }
+}

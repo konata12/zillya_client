@@ -48,7 +48,10 @@
             justify-content: center;
 
             div {
-                margin-top: 100px;
+
+                &:first-child {
+                    margin: 40vh 0;
+                }
             }
 
             p {
