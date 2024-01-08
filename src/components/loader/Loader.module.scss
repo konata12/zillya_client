@@ -1,0 +1,23 @@
+@import '../../styles/variables';
+
+.loader {
+    width: fit-content;
+    font-weight: bold;
+    font-family: $base-font;
+    font-size: 30px;
+    color: transparent;
+    background: linear-gradient(90deg, $base-color calc(50% + 0.5ch), #fff 0) right/calc(200% + 1ch) 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: l7 2s infinite steps(11);
+}
+
+.loader:before {
+    content: "Loading..."
+}
+
+@keyframes l7 {
+    to {
+        background-position: left
+    }
+}

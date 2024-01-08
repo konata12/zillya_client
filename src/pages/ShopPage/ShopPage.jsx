@@ -9,6 +9,7 @@ import styles from './ShopPage.module.scss'
 import { Product } from '../../components/product/Product'
 import { Pagination } from '../../components/pagination/Pagination'
 import { FilterContainer } from '../../components/pagination/filterContainer/FilterContainer'
+import { Loader } from '../../components/loader/Loader'
 
 export function ShopPage() {
     const [categoryIsActive, setCategoryIsActive] = useState(true)
@@ -83,7 +84,7 @@ export function ShopPage() {
             <div className={styles.products}>
                 {
                     loading ? <div className={styles.no_products}>
-                        <p>is loading</p>
+                        <Loader />
                     </div> : renderItems()
                 }
             </div>

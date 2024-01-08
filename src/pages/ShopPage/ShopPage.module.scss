@@ -44,6 +44,12 @@
 
         .no_products {
             width: 100%;
+            display: flex;
+            justify-content: center;
+
+            div {
+                margin-top: 100px;
+            }
 
             p {
                 margin: 100px auto;
