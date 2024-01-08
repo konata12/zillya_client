@@ -15,7 +15,7 @@ export function AdminItems() {
 
     const FetchItems = async () => {
         try {
-            const {data} = await Axios.get('/items/');
+            const {data} = await Axios.get('/admin/items/');
             let newData = data.items
             console.log(data.items);
             newData.forEach(element => {

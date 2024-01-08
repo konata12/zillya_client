@@ -14,6 +14,7 @@
     top: 0;
     background: $theme-color;
     justify-content: space-evenly;
+    overflow-y: scroll;
     .title {
         text-align: center;
         font-family: $base-font;
@@ -27,6 +28,7 @@
         width: 1200px;
         flex-wrap: wrap;
         padding: 100px 0;
+        justify-content: space-around;
     }
 
 }

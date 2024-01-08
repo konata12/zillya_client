@@ -146,8 +146,8 @@ export const authSlice = createSlice({
                 state.isLoading = false
                 state.status = action.payload?.status
                 state.user = action.payload?.user
-                state.token = action.payload.token
-                state.staff = action.payload.user?.staff
+                state.token = action.payload?.token
+                state.staff = action.payload?.user?.staff
 
                 // console.log(state.user)
                 // console.log(state.token)
