@@ -8,6 +8,7 @@ import { FilterLink } from './filterLink/FilterLink'
 
 export function FilterContainer({ isActive, isCategoryFilter }) {
     const links = isCategoryFilter ? [
+        { label: 'Всі товари', value: 'all' },
         { label: 'Вейпи', value: 'vape' },
         { label: 'Спрей', value: 'spray' },
         { label: 'Косметика', value: 'cosmetic' },
