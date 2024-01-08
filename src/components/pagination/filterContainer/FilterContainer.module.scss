@@ -1,20 +1,31 @@
 @import '../../../styles/variables';
 
 .container {
-    display: none;
-    height: 0;
+    display: flex;
+    // height: 0px;
+    transform: rotateX(90deg);
+    transform-origin: 0 0 ;
     width: 100%;
-    padding: 30px 33px;
-    border: 3px solid $dark-main-font-color;
+    max-height: 0;
+    padding: 0px 33px;
+    border: 0px solid $dark-main-font-color;
     gap: 28px;
-    transition: all 0.5s linear;
-    -webkit-transition: all 0.5s linear;
-    -moz-transition: all 0.5s linear;
-    -ms-transition: all 0.5s linear;
-    -o-transition: all 0.5s linear;
+    transition: all .1s linear;
+    // -webkit-transition: all 0.5s linear;
+    // -moz-transition: all 0.5s linear;
+    // -ms-transition: all 0.5s linear;
+    // -o-transition: all 0.5s linear;
 
     &.isActive {
         display: flex;
-        height: 100%;
+        max-height: 1000px;
+        // transform: rotateX(0deg);
+    }
+    
+    &.opened{
+        border: 3px solid $dark-main-font-color;
+        height: unset;
+        padding: 30px 33px;
+        transform: rotateX(0deg);
     }
 }

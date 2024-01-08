@@ -6,7 +6,7 @@ import styles from './FilterContainer.module.scss'
 import { FilterLink } from './filterLink/FilterLink'
 
 
-export function FilterContainer({ isActive, isCategoryFilter }) {
+export function FilterContainer({ isActive, isCategoryFilter, categoryIsActiveAnim }) {
     const links = isCategoryFilter ? [
         { label: 'Всі товари', value: 'all' },
         { label: 'Вейпи', value: 'vape' },
@@ -40,9 +40,9 @@ export function FilterContainer({ isActive, isCategoryFilter }) {
             </FilterLink>
         })
     }
-
+    // categoryIsActiveAnim
     return (
-        <div className={`${styles.container} ${isActive ? styles.isActive : ''}`}>
+        <div className={`${styles.container} ${isActive ? styles.isActive : ''} ${categoryIsActiveAnim && styles.opened}`}>
             {renderLinks()}
         </div>
     )

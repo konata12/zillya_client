@@ -12,8 +12,11 @@ import { FilterContainer } from '../../components/pagination/filterContainer/Fil
 import { Loader } from '../../components/loader/Loader'
 
 export function ShopPage() {
-    const [categoryIsActive, setCategoryIsActive] = useState(true)
+    const [categoryIsActive, setCategoryIsActive] = useState(false)
     const [sortIsActive, setSortIsActive] = useState(false)
+
+    const [categoryIsActiveAnim, setCategoryIsActiveAnim] = useState(false)
+    const [sortIsActiveAnim, setSortIsActiveAnim] = useState(false)
 
     const dispatch = useDispatch()
     const { page, parameter, category, items, loading } = useSelector(state => state.items)
@@ -28,7 +31,6 @@ export function ShopPage() {
         return items.map(item => {
             return <Product
                 key={item._id}
-                id={item._id}
                 imgUrl={item.img}
                 firstTitle={item.titleFstPart}
                 secondTitle={item.titleScndPart}
@@ -41,6 +43,19 @@ export function ShopPage() {
     const renderPagination = () => {
         if (items === undefined || items.lenght === 0) return ''
         return <Pagination />
+    }
+
+    const handleOpenFilter = ( state, setState, setAnimState ) => {
+        if (state) {
+            setState(false)
+            setAnimState(false)
+            // setHidePadding(false)
+        } else {
+            setState(true)
+            // setHidePadding(true)
+            setAnimState(true)
+        }
+        
     }
 
     useEffect(() => {
@@ -56,31 +71,27 @@ export function ShopPage() {
             <div className={styles.sort}>
                 <p className={styles.category}>
                     Оберіть &#160;
-                    <span onClick={() => setCategoryIsActive(!categoryIsActive)}>
+                    <span onClick={() => handleOpenFilter(categoryIsActive, setCategoryIsActive, setCategoryIsActiveAnim)}>
                         категорію:
                     </span>
                 </p>
 
                 <p className={styles.category}>
-                    <span onClick={() => setSortIsActive(!sortIsActive)}>
+                    <span onClick={() => handleOpenFilter(sortIsActive, setSortIsActive, setSortIsActiveAnim)}>
                         Сортувати
                     </span>
                     &#160; за:
                 </p>
-
-                <div className={styles.category_container}>
-                    <FilterContainer
-                        isActive={categoryIsActive}
-                        isCategoryFilter={true}
-                    />
-                </div>
-
-                <div className={styles.category_container}>
-                    <FilterContainer
-                        isActive={sortIsActive}
-                        isCategoryFilter={false}
-                    />
-                </div>
+                <FilterContainer
+                    isActive={categoryIsActive}
+                    isCategoryFilter={true}
+                    categoryIsActiveAnim={categoryIsActiveAnim}
+                />
+                <FilterContainer
+                    isActive={sortIsActive}
+                    isCategoryFilter={false}
+                    categoryIsActiveAnim={sortIsActiveAnim}
+                />
             </div>
 
             <div className={styles.products}>

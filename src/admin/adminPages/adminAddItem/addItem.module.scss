@@ -27,7 +27,14 @@
         height: calc(100vh - 128px);
         padding: 50px;
         width: 100%;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: center;
         padding: auto;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
     
         .innerContainer{
             height: 500px;
@@ -72,6 +79,26 @@
             font-size: 40px;
             text-align: center;
         }
+
+        .variantContainer{
+            width: 100%;
+            margin-bottom: 50px;
+            .variantInnerContainer{
+                outline: 3px solid $border-color;
+                display: flex;
+                justify-content: space-evenly;
+                flex-direction: column;
+                width: 600px;
+                min-height: 500px;
+                // padding: 100px;
+                margin: 0 auto;
+                // .button{
+                //     p{
+                //         font-size: 20px;
+                //     }
+                // }
+            }
+        }
     
         .inputContainer{
             width: 600px;
@@ -82,7 +109,7 @@
             flex-direction: column;
             .input{
                 // outline: 1px solid 30360D;
-                height: 74px;
+                height: 64px;
                 outline: 3px solid $border-color;
                 color: #878787;
                 padding-left: 32px;
@@ -114,5 +141,47 @@
     
         }
 
+        .dropdown{
+            width: 600px;
+            height: 200px;
+            margin: 0 auto;
+            display: flex;
+            // justify-content: space-evenly;
+            flex-direction: column;
+            position: relative;
+            .inner{
+                position: absolute;
+                top: 50px;
+                width: 100%;
+                background: $theme-color;
+                left: 0;
+                outline: 3px solid $border-color;
+                .dropdownEl{
+                    cursor: pointer;
+                    height: 74px;
+                    align-items: center;
+                    display: flex;
+                    justify-content: center;
+                    outline: 3px solid $border-color;
+                }
+            }
+        }
+
+    }
+
+    .optionsWrapper{
+        outline: 3px solid $border-color;
+        padding: 10px;
+        cursor: pointer;
+        transition: all .3s;
+        &:hover{
+            background-color: red;
+        }
+        .optionsTop{
+            display: flex;
+        }
+        .optionsBot{
+            display: flex;
+        }
     }
 }

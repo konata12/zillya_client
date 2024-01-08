@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Axios from '../../../../utils/axios.js'
-
+import { Client } from '../client/Client.jsx'
 
 // STYLES
 import styles from './clients.module.scss'
 
 export const Clients = () => {
   const [clients, setClients] = useState([])
+  const [client, setClient] = useState()
 
   const FetchClients = async () => {
     try {
@@ -22,17 +23,23 @@ export const Clients = () => {
     FetchClients()
   },[])
 
+  if (client) {
+    return(
+      <Client client={client}/>
+    )
+  }
+
 
   return (
     <div className={styles.container}>
       <p className={styles.title}>Усі Клієнти</p>
       <div className={styles.clientsWrapper}>
-        {clients.map(client => (
-          <div className={styles.client}>
-            <p className={styles.boldP}>{client._id}</p>
-            <p className={styles.semiP}>{client.email}</p>
-            <p className={styles.semiP}>{client.name}</p>
-            <p className={styles.lightP}>{client?.orders?.length}</p>
+        {clients.map(item => (
+          <div className={styles.client} onClick={() => setClient(item)}>
+            <p className={styles.boldP}>{item._id}</p>
+            <p className={styles.semiP}>{item.email}</p>
+            <p className={styles.semiP}>{item.name}</p>
+            <p className={styles.lightP}>{item?.orders?.length}</p>
           </div>
         ))}
       </div>
