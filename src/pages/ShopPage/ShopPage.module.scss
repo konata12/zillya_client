@@ -41,6 +41,7 @@
     .products {
         display: flex;
         flex-wrap: wrap;
+        padding: 52px 0;
 
         .no_products {
             width: 100%;
@@ -64,7 +65,7 @@
             }
         }
 
-        div {
+        & > div {
 
             // horizontal margin
             &:nth-child(3n + 2) {

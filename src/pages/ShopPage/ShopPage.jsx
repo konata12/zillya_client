@@ -34,6 +34,7 @@ export function ShopPage() {
                 secondTitle={item.titleScndPart}
                 price={item.choice[0].price}
                 discountPrice={item.discountPrice}
+                discount={item.choice[0].discount}
             />
         })
     }

@@ -1,10 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { Link, NavLink, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import axios from "../../utils/axios";
 
 // STYLES
 import styles from './ProductPage.module.scss'
 
+// COMPONENTS
+import { Button } from '../../components/button/Button';
+
+// IMAGES
+import weed from '../../media/images/weed.png'
 
 export function ProductPage() {
     const [item, setItem] = useState(null)
@@ -24,6 +29,15 @@ export function ProductPage() {
                 {choice.option}
             </span>
         })
+    }
+
+    const renderDiscountPrice = () => {
+        const price = item?.choice[option].price
+        const discount = item?.choice[option].discount
+
+        const discountPrice = ((100 - discount) / 100) * price
+        if (isNaN(discountPrice)) return
+        return discountPrice
     }
 
     const fetchItem = useCallback(async () => {
@@ -73,9 +87,37 @@ export function ProductPage() {
 
                     <div className={styles.prices}>
                         <p className={styles.price}>
-                            {item?.choice[option].price}
+                            {`${renderDiscountPrice()} грн`}
                         </p>
+                        {
+                            item?.choice[option].discount !== 0 ? <p className={styles.price_before_discount}>
+                                {`${item?.choice[option].price} грн`}
+                            </p> : ''
+                        }
                     </div>
+
+                    <div className={styles.buttons}>
+                        <Button>
+                            Додати в корзину
+                        </Button>
+                    </div>
+                </div>
+            </div>
+
+            <div className={styles.about}>
+                <div className={styles.info}>
+                    <p className={styles.title}>
+                        <span>Про</span> товар:
+                    </p>
+                    <p className={styles.first}>
+                        {item?.aboutFrstPart}
+                    </p>
+                    <p className={styles.second}>
+                        {item?.aboutScndPart}
+                    </p>
+                </div>
+                <div className={styles.img}>
+                    <img src={weed} alt="weed" />
                 </div>
             </div>
         </div>

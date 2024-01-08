@@ -1,6 +1,7 @@
 @import '../../styles/variables';
 
 .product {
+    position: relative;
     width: 27.78%;
     display: flex;
     justify-content: space-between;
@@ -35,12 +36,27 @@
         color: $secondary-font-color;
     }
 
-    .price {
-        align-self: end;
+    .prices {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
 
-        font-family: $reg-font;
-        font-size: $main-font-size;
-        color: $secondary-color;
+        .price_before_discount {
+            font-family: $reg-font;
+            font-weight: $black-weight;
+            font-size: $main-font-size;
+            color: $border-color;
+            text-decoration-line: line-through;
+            -moz-text-decoration-line: line-through;
+        }
+    
+        .price {
+            align-self: end;
+    
+            font-family: $reg-font;
+            font-size: $main-font-size;
+            color: $secondary-color;
+        }
     }
 
     button {
@@ -49,5 +65,18 @@
 
         font-family: $reg-font;
         font-size: $main-font-size;
+    }
+
+    .discount {
+        position: absolute;
+        top: -40px;
+        right: -60px;
+        transform: rotate(15deg);
+        user-select: none;
+
+        font-family: $base-font;
+        font-size: 128px;
+        color: $theme-color;
+        -webkit-text-stroke: 3px $secondary-color;
     }
 }

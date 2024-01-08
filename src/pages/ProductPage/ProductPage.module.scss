@@ -1,6 +1,7 @@
 @import '../../styles/variables';
 
 .container {
+    padding: 80px 0 115px;
 
     .to_shop {
         padding-bottom: 71px;
@@ -27,7 +28,6 @@
 
     .product {
         display: flex;
-        padding-bottom: 26px;
 
         .img {
             position: relative;
@@ -52,11 +52,16 @@
         }
 
         .info {
-            widows: 50%;
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            padding-bottom: 26px;
 
             .title {
                 font-family: $base-font;
                 font-size: $title-font-size;
+
+                margin-bottom: 7px;
 
                 span {
                     background-color: $secondary-color;
@@ -67,9 +72,14 @@
                 font-family: $reg-font;
                 font-size: $med-font-size;
                 color: $secondary-font-color;
+
+                margin-bottom: 28px;
             }
 
             .choice {
+                display: flex;
+                align-items: stretch;
+                gap: 28px;
 
                 span {
                     font-family: $base-font;
@@ -85,12 +95,18 @@
             }
 
             .prices {
+                display: flex;
+                flex-grow: 1;
+                gap: 10px;
 
                 .price {
                     font-family: $reg-font;
                     font-weight: $black-weight;
                     font-size: $med-font-size;
                     color: $secondary-color;
+
+                    display: flex;
+                    align-items: end;
                 }
 
                 .price_before_discount {
@@ -98,7 +114,67 @@
                     font-weight: $black-weight;
                     font-size: $main-font-size;
                     color: $border-color;
+                    text-decoration-line: line-through;
+                    -moz-text-decoration-line: line-through;
+
+                    display: flex;
+                    align-items: end;
+                    padding-bottom: 3px;
                 }
+            }
+
+            .buttons {
+                display: flex;
+                gap: 52px;
+                margin-top: 28px;
+
+                button {
+                    font-family: $reg-font;
+                    font-size: $med-font-size;
+
+                    display: inline;
+                    padding: 21px 54px;
+                }
+            }
+        }
+    }
+
+    .about {
+        display: flex;
+        padding-top: 52px;
+
+        .info {
+            .title {
+                font-family: $base-font;
+                font-size: $med-font-size;
+
+                padding-bottom: 52px;
+
+                span {
+                    color: $base-color;
+                }
+            }
+
+            .first {
+                font-family: $reg-font;
+                font-size: $main-font-size;
+
+                padding-bottom: 28px;
+            }
+
+            .second {
+                font-family: $reg-font;
+                font-size: $main-min-font-size;
+                color: $secondary-font-color;
+            }
+        }
+
+        .img {
+            display: flex;
+            align-items: end;
+
+            img {
+                display: block;
             }
         }
     }
