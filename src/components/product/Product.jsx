@@ -7,6 +7,7 @@ import styles from './Product.module.scss'
 import { Link } from 'react-router-dom'
 
 export function Product({ id, imgUrl, firstTitle, secondTitle, price, discountPrice, discount }) {
+    console.log(id)
     return (
         <div className={styles.product}>
             <img src={imgUrl} alt="" />

@@ -31,6 +31,7 @@ export function ShopPage() {
         return items.map(item => {
             return <Product
                 key={item._id}
+                id={item._id}
                 imgUrl={item.img}
                 firstTitle={item.titleFstPart}
                 secondTitle={item.titleScndPart}
