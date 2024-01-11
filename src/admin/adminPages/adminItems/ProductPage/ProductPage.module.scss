@@ -1,0 +1,183 @@
+@import '../../../../styles/variables';
+
+.container {
+    padding: 80px 0 115px;
+    max-width: 1240px;
+
+    .to_shop {
+        padding-bottom: 71px;
+
+        .Link {
+            cursor: pointer;
+            font-family: $reg-font;
+            font-size: $main-font-size;
+            text-decoration: none;
+
+            display: flex;
+
+            span {
+                display: block;
+                align-items: center;
+
+                color: $secondary-font-color;
+
+                &:nth-child(1) {
+                    margin-top: -1px;
+                }
+            }
+        }
+    }
+
+    .product {
+        display: flex;
+
+        .img {
+            position: relative;
+            width: 50%;
+
+            .border {
+                position: absolute;
+                height: 100%;
+                width: 50%;
+                border-left: 3px solid $border-color;
+                border-bottom: 3px solid $border-color;
+            }
+
+            &_container {
+                padding: 0 48px 26px 43px;
+
+                img {
+                    display: block;
+                    width: 100%;
+                }
+            }
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            padding-bottom: 26px;
+
+            .title {
+                font-family: $base-font;
+                font-size: $title-font-size;
+
+                margin-bottom: 7px;
+
+                span {
+                    background-color: $secondary-color;
+                }
+            }
+
+            .subtitle {
+                font-family: $reg-font;
+                font-size: $med-font-size;
+                color: $secondary-font-color;
+
+                margin-bottom: 28px;
+            }
+
+            .choice {
+                display: flex;
+                align-items: stretch;
+                gap: 28px;
+
+                span {
+                    font-family: $base-font;
+                    font-size: $main-font-size;
+                    color: $dark-main-font-color;
+
+                    cursor: pointer;
+
+                    &.active {
+                        color: $base-color;
+                    }
+                }
+            }
+
+            .prices {
+                display: flex;
+                flex-grow: 1;
+                gap: 10px;
+
+                .price {
+                    font-family: $reg-font;
+                    font-weight: $black-weight;
+                    font-size: $med-font-size;
+                    color: $secondary-color;
+
+                    display: flex;
+                    align-items: end;
+                }
+
+                .price_before_discount {
+                    font-family: $reg-font;
+                    font-weight: $black-weight;
+                    font-size: $main-font-size;
+                    color: $border-color;
+                    text-decoration-line: line-through;
+                    -moz-text-decoration-line: line-through;
+
+                    display: flex;
+                    align-items: end;
+                    padding-bottom: 3px;
+                }
+            }
+
+            .buttons {
+                display: flex;
+                gap: 52px;
+                margin-top: 28px;
+
+                button {
+                    font-family: $reg-font;
+                    font-size: $med-font-size;
+
+                    display: inline;
+                    padding: 21px 54px;
+                }
+            }
+        }
+    }
+
+    .about {
+        display: flex;
+        padding-top: 52px;
+
+        .info {
+            .title {
+                font-family: $base-font;
+                font-size: $med-font-size;
+
+                padding-bottom: 52px;
+
+                span {
+                    color: $base-color;
+                }
+            }
+
+            .first {
+                font-family: $reg-font;
+                font-size: $main-font-size;
+
+                padding-bottom: 28px;
+            }
+
+            .second {
+                font-family: $reg-font;
+                font-size: $main-min-font-size;
+                color: $secondary-font-color;
+            }
+        }
+
+        .img {
+            display: flex;
+            align-items: end;
+
+            img {
+                display: block;
+            }
+        }
+    }
+}
