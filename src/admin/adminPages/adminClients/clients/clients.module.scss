@@ -4,7 +4,7 @@
     position: fixed;
     z-index: 101;
     width: 100%;
-    padding: 10vh 0;
+    // padding: 10vh 0;
     margin: 0 auto;
     left: 0;
     display: flex;
@@ -14,49 +14,56 @@
     top: 0;
     background: $theme-color;
     justify-content: space-evenly;
-    .title {
-        text-align: center;
-        font-family: $base-font;
-        width: 100%;
-        font-size: $title-font-size;
-    }
-
-    .clientsWrapper{
+    .innerContainer{
+        width: 1400px;
         height: 100%;
-        display: flex;
-        flex-direction: column;
-        padding: 100px 0;
-        width: 1200px;
-        
-        .client{
+        position: relative;
+        .title {
+            text-align: center;
+            font-family: $base-font;
             width: 100%;
+            font-size: $title-font-size;
+            margin: 40px 0;
+        }
+    
+        .clientsWrapper{
+            margin: 0 auto;
+            height: 100%;
             display: flex;
-            justify-content: space-between;
-            outline: 3px solid $border-color; 
-            flex-direction: row;
-            height: 80px;
-            cursor: pointer;
-            p{
+            flex-direction: column;
+            padding: 100px 0;
+            width: 1200px;
+            
+            .client{
+                width: 100%;
                 display: flex;
-                justify-content: center;
-                align-items: center;
-                text-align: left;
-                font-size: 20px;
-                font-weight: $reg-weight;
-                outline: 1px solid $border-color;
-                font-family: $base-font;
-            }
-            .boldP{
-                width: 500px;
-            }
-            .semiP{
-                width: 300px;
-            }
-            .lightP{
-                width: 100px;
-            }
-            &:hover{
-                background-color: $border-color;
+                justify-content: space-between;
+                outline: 3px solid $border-color; 
+                flex-direction: row;
+                height: 80px;
+                cursor: pointer;
+                p{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: left;
+                    font-size: 20px;
+                    font-weight: $reg-weight;
+                    outline: 1px solid $border-color;
+                    font-family: $base-font;
+                }
+                .boldP{
+                    width: 500px;
+                }
+                .semiP{
+                    width: 300px;
+                }
+                .lightP{
+                    width: 100px;
+                }
+                &:hover{
+                    background-color: $border-color;
+                }
             }
         }
     }

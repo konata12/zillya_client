@@ -28,9 +28,6 @@ export function ShopPage() {
                 <p>Нема таких товарів</p>
             </div>
         }
-        console.log('====================================');
-        console.log(items);
-        console.log('====================================');
         return items.map(item => {
             
             return <Product

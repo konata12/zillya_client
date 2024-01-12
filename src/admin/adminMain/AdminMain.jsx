@@ -30,19 +30,19 @@ export function AdminMain() {
 
     if (addItemOpened) {
         return (
-            <AddItem /> 
+            <AddItem setClose={setAddItemOpened}/> 
         )
     }
 
     if (adminItemsOpened) {
         return (
-            <AdminItems /> 
+            <AdminItems setClose={setAdminItemsOpened}/> 
         )
     }
 
     if (adminClientsOpened) {
         return (
-            <Clients /> 
+            <Clients setClose={setAdminClientsOpened}/> 
         )
     }
 

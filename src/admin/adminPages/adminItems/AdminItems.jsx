@@ -7,11 +7,11 @@ import { ProductPage } from './ProductPage/ProductPage.jsx'
 
 // STYLES
 import styles from './adminItems.module.scss'
+import mainStyles from '../../styles/index.module.scss'
 
 
 
-
-export function AdminItems() {
+export function AdminItems({setClose}) {
     const [items, setItems] = useState([])
     const [productPageItem, setProductPageItem] = useState(false)
 
@@ -50,22 +50,20 @@ export function AdminItems() {
     
     return (
         <div className={styles.container}>
-            <p className={styles.title}>Усі товари</p>
-            <div className={styles.itemsWrapper}>
-                {items.map((item) => (
-                   <Product product={item} setProductPageItem={setProductPageItem}/>
-                ))}
-            </div>
-            {/*
-            <div className={styles.itemsContainer}>
-                <input type="text" className={styles.input} />
-                <input type="text" className={styles.input} />
-                <div className={styles.button}
-                    onClick={() => handleLogin()}
+            <div className={styles.innerContainer}>
+                <div className={mainStyles.close}
+                    onClick={() => setClose(false)}
                 >
-                    <p>ввійти</p>
+                    <div className={mainStyles.line} />
+                    <div className={`${mainStyles.line}`+` ${mainStyles.fstLine}`} />
                 </div>
-            </div> */}
+                <p className={styles.title}>Усі товари</p>
+                <div className={styles.itemsWrapper}>
+                    {items.map((item) => (
+                    <Product product={item} setProductPageItem={setProductPageItem}/>
+                    ))}
+                </div>
+            </div>
         </div>
     )
 }

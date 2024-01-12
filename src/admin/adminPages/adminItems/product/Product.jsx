@@ -1,37 +1,7 @@
-// import React from 'react'
-
-// // STYLES
-// import styles from './Product.module.scss'
-
-// export function Product({ product, setProductPageItem }) {
-//     console.log(product);
-//     return (
-//         <div className={styles.product}>
-//             <img src={product.img} alt="" />
-//             <p className={styles.title}>
-//                 {product.titleFstPart+product.titleScndPart}
-//             </p>
-//             <p className={styles.title_info}>
-//                 {product.subtitle}
-//             </p>
-//             <p className={styles.price}>
-//                 4013 грн
-//             </p>
-//             <button className={'btn'}
-//                 onClick={() => setProductPageItem(product)}
-//             >
-//                 Купити
-//             </button>
-//         </div>
-//     )
-// }
-import React, { useState } from 'react'
+import React from 'react'
 
 // STYLES
 import styles from './Product.module.scss'
-
-// COMPONENTS
-import { Link } from 'react-router-dom'
 
 export function Product({ product, setProductPageItem  }) {
     const discountPrice = product.choice[0].price - (product.choice[0].price / (100/product.choice[0].discount))

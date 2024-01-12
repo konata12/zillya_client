@@ -4,11 +4,12 @@ import React, { useState } from 'react'
 
 // STYLES
 import styles from './addItem.module.scss'
+import mainStyles from '../../styles/index.module.scss'
 import { AddVariant } from './addVariant/AddVariant'
 import Axios from '../../../utils/axios'
 
 
-export const AddItem = () => {
+export const AddItem = ({setClose}) => {
     const [img, setImg] = useState('')
     const [titleFstPart, setTitleFstPart] = useState('')
     const [titleScndPart, setTitleScndPart] = useState('')
@@ -65,135 +66,144 @@ export const AddItem = () => {
 
   return (
     <div className={styles.container}>
-      {addOptionOpen && <AddVariant handleAddOption={handleAddOption} setAddOptionOpen={setAddOptionOpen}/>}
-      <p className={styles.title}>Додати товар</p>
-
-      <div className={styles.inputsContainer}>
-
-        <div className={styles.inputContainer}>
-          <p>картинка</p>
-          <input
-            type="text"
-            className={styles.input}
-            value={img}
-            onChange={(e) => setImg(e.target.value)}
-          />
+      
+      <div className={styles.innerContainer}>
+        <div className={mainStyles.close}
+          onClick={() => setClose(false)}
+        >
+          <div className={mainStyles.line} />
+          <div className={`${mainStyles.line}`+` ${mainStyles.fstLine}`} />
         </div>
+        {addOptionOpen && <AddVariant handleAddOption={handleAddOption} setAddOptionOpen={setAddOptionOpen}/>}
+        <p className={styles.title}>Додати товар</p>
 
-        <div className={styles.inputContainer}>
-          <p>Заголовок 1</p>
-          <input
-            type="text"
-            className={styles.input}
-            value={titleFstPart}
-            onChange={(e) => setTitleFstPart(e.target.value)}
-          />
-        </div>
+        <div className={styles.inputsContainer}>
 
-        <div className={styles.inputContainer}>
-          <p>Заголовок 2</p>
-          <input
-            type="text"
-            className={styles.input}
-            value={titleScndPart}
-            onChange={(e) => setTitleScndPart(e.target.value)}
-          />
-        </div>
-
-        <div className={styles.inputContainer}>
-          <p>Підзаголовок</p>
-          <input
-            type="text"
-            className={styles.input}
-            value={subtitle}
-            onChange={(e) => setSubtitle(e.target.value)}
-          />
-        </div>
-
-        <div className={styles.dropdown}>
-          <p>Тип</p>
-          <div className={styles.inner}>
-            {!showPosibleType ?
-              <p className={styles.dropdownEl}
-                onClick={() => setShowPosibleType(true)}
-              >{type.label}</p>
-              : 
-              showPosibleType && posibleType.map((opt) => (
-                <div className={styles.dropdownEl}
-                  onClick={() => {
-                    setShowPosibleType(false)
-                    setType(opt)
-                  }}
-                >
-                  <p>{opt.label}</p>
-                </div>
-              ))
-            }
-            
+          <div className={styles.inputContainer}>
+            <p>картинка</p>
+            <input
+              type="text"
+              className={styles.input}
+              value={img}
+              onChange={(e) => setImg(e.target.value)}
+            />
           </div>
-          {/* <input
-            type="text"
-            className={styles.input}
-            value={type}
-            onChange={(e) => setType(e.target.value)}
-          /> */}
-        </div>
 
-        <div className={styles.textareaContainer}>
-          <p>Про товар 1</p>
-          <textarea
-            type="text"
-            className={styles.input}
-            value={aboutFrstPart}
-            onChange={(e) => setAboutFrstPart(e.target.value)}
-          />
-        </div>
+          <div className={styles.inputContainer}>
+            <p>Заголовок 1</p>
+            <input
+              type="text"
+              className={styles.input}
+              value={titleFstPart}
+              onChange={(e) => setTitleFstPart(e.target.value)}
+            />
+          </div>
 
-        <div className={styles.textareaContainer}>
-          <p>Про товар 2</p>
-          <textarea
-            type="text"
-            className={styles.input}
-            value={aboutScndPart}
-            onChange={(e) => setAboutScndPart(e.target.value)}
-          />
-        </div>
+          <div className={styles.inputContainer}>
+            <p>Заголовок 2</p>
+            <input
+              type="text"
+              className={styles.input}
+              value={titleScndPart}
+              onChange={(e) => setTitleScndPart(e.target.value)}
+            />
+          </div>
 
-        <div className={styles.variantContainer}>
-          <div className={styles.variantInnerContainer}>
-            <p>Варіації товару</p>
+          <div className={styles.inputContainer}>
+            <p>Підзаголовок</p>
+            <input
+              type="text"
+              className={styles.input}
+              value={subtitle}
+              onChange={(e) => setSubtitle(e.target.value)}
+            />
+          </div>
 
-            {optionsArray?.map((el) => (
-              <div className={styles.optionsWrapper}
-                onClick={() => handleDeleteOption(el)}
-              >
-                <div className={styles.optionsTop}>
-                  <p>варіація</p>
-                  <p>ціна</p>
-                  <p>знижка</p>
-                </div>
-                <div className={styles.optionsBot}>
-                  <p>{el.option}</p>
-                  <p>{el.price}</p>
-                  <p>{el.discount}</p>
-                </div>
-              </div>
-            ))}
-            
-            <div className={styles.button}
-              onClick={() => setAddOptionOpen(true)}
-            >
-              <p>додати варіацію</p>
+          <div className={styles.dropdown}>
+            <p>Тип</p>
+            <div className={styles.inner}>
+              {!showPosibleType ?
+                <p className={styles.dropdownEl}
+                  onClick={() => setShowPosibleType(true)}
+                >{type.label}</p>
+                : 
+                showPosibleType && posibleType.map((opt) => (
+                  <div className={styles.dropdownEl}
+                    onClick={() => {
+                      setShowPosibleType(false)
+                      setType(opt)
+                    }}
+                  >
+                    <p>{opt.label}</p>
+                  </div>
+                ))
+              }
+              
             </div>
+            {/* <input
+              type="text"
+              className={styles.input}
+              value={type}
+              onChange={(e) => setType(e.target.value)}
+            /> */}
           </div>
 
-        </div>
+          <div className={styles.textareaContainer}>
+            <p>Про товар 1</p>
+            <textarea
+              type="text"
+              className={styles.input}
+              value={aboutFrstPart}
+              onChange={(e) => setAboutFrstPart(e.target.value)}
+            />
+          </div>
 
-        <div
-            className={styles.button}
-            onClick={() => handleSubmit()}
-          >
-            <p>Додати товар</p>
+          <div className={styles.textareaContainer}>
+            <p>Про товар 2</p>
+            <textarea
+              type="text"
+              className={styles.input}
+              value={aboutScndPart}
+              onChange={(e) => setAboutScndPart(e.target.value)}
+            />
+          </div>
+
+          <div className={styles.variantContainer}>
+            <div className={styles.variantInnerContainer}>
+              <p>Варіації товару</p>
+
+              {optionsArray?.map((el) => (
+                <div className={styles.optionsWrapper}
+                  onClick={() => handleDeleteOption(el)}
+                >
+                  <div className={styles.optionsTop}>
+                    <p>варіація</p>
+                    <p>ціна</p>
+                    <p>знижка</p>
+                  </div>
+                  <div className={styles.optionsBot}>
+                    <p>{el.option}</p>
+                    <p>{el.price}</p>
+                    <p>{el.discount}</p>
+                  </div>
+                </div>
+              ))}
+              
+              <div className={styles.button}
+                onClick={() => setAddOptionOpen(true)}
+              >
+                <p>додати варіацію</p>
+              </div>
+            </div>
+
+          </div>
+
+          <div
+              className={styles.button}
+              onClick={() => handleSubmit()}
+            >
+              <p>Додати товар</p>
+          </div>
         </div>
       </div>
 

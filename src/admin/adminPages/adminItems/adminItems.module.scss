@@ -4,7 +4,7 @@
     position: fixed;
     z-index: 101;
     width: 100%;
-    padding: 10vh 0;
+    // padding: 10vh 0;
     margin: 0 auto;
     left: 0;
     display: flex;
@@ -14,21 +14,63 @@
     top: 0;
     background: $theme-color;
     justify-content: space-evenly;
-    overflow-y: scroll;
-    .title {
-        text-align: center;
-        font-family: $base-font;
-        width: 100%;
-        font-size: $title-font-size;
+    .innerContainer{
+        width: 1400px;
+        position: relative;
+        height: 100%;
+        // padding: 0 100px;
+        .title {
+            text-align: center;
+            font-family: $base-font;
+            width: 100%;
+            margin: 40px 0;
+            font-size: $title-font-size;
+        }
+    
+        .itemsWrapper{
+            height: 100%;
+            display: flex;
+            width: 1400px;
+            flex-wrap: wrap;
+            position: absolute;
+            // padding: 100px 0;
+            margin: auto;
+            justify-content: space-around;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            // padding: 0 100px;
+            padding: 52px 100px;
+            & > div {
+                margin-bottom: 52px;
+    
+                // horizontal margin
+                // &:nth-child(3n + 2) {
+                //     margin: 0 8.33%;
+                // }
+    
+                // // vertical margin
+                // &:nth-child(-n + 6) {
+                //     margin-bottom: 52px;
+                // }
+    
+                // // central element top margin
+                // &:nth-child(4) {
+                //     margin-bottom: 86px;
+                // }
+    
+                // &:nth-child(5) {
+                //     margin-top: 34px;
+                // }
+    
+                // &:nth-child(6) {
+                //     margin-bottom: 86px;
+                // }
+            }
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
     }
 
-    .itemsWrapper{
-        height: 100%;
-        display: flex;
-        width: 1200px;
-        flex-wrap: wrap;
-        padding: 100px 0;
-        justify-content: space-around;
-    }
 
 }
