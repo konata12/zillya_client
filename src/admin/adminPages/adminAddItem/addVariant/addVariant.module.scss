@@ -9,6 +9,27 @@
     height: 700px;
     outline: 3px solid $border-color;
 
+    
+    .close{
+        position: absolute;
+        top: 45px;
+        left: 60px;
+        width: 30px;
+        height: 30px;
+        transform: rotate(45deg);
+        .line{
+            width: 30px;
+            height: 2px;
+            background-color: white;
+            position: relative;
+            top: 10px;
+        }
+
+        .fstLine{
+            transform: rotate(90deg);
+            top: 8px;
+        }
+    }
 
     .title {
         text-align: center;

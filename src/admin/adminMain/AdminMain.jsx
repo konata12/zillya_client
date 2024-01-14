@@ -3,17 +3,22 @@ import { AdminItems } from '../adminPages/adminItems/AdminItems'
 import { useDispatch, useSelector } from 'react-redux';
 import { checkIsStaff, getMe } from '../../redux/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
+import { Clients } from '../adminPages/adminClients/clients/Clients';
+import { AddItem } from '../adminPages/adminAddItem/AddItem';
+import { ProductPage } from '../adminPages/adminItems/ProductPage/ProductPage'
 
 // STYLES
 import styles from './adminMain.module.scss'
-import { Clients } from '../adminPages/adminClients/clients/Clients';
-import { AddItem } from '../adminPages/adminAddItem/AddItem';
-
 
 export function AdminMain() {
     const [adminItemsOpened, setAdminItemsOpened] = useState(false)
+    const [product, setProduct] = useState()
+    const [adminItem, setAdminItem] = useState(false)
     const [addItemOpened, setAddItemOpened] = useState(false)
     const [adminClientsOpened, setAdminClientsOpened] = useState(false)
+    const [editProduct, setEditProduct] = useState(false)
+    const [productPageItem, setProductPageItem] = useState(false)
+    // const [product, setProduct] = useState()
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const isStaff = useSelector(checkIsStaff);  
@@ -28,15 +33,40 @@ export function AdminMain() {
         }
     }, []);
 
+    useEffect(() => {
+        console.log('====================================');
+        console.log(editProduct);
+        console.log('====================================')
+        if (editProduct) {
+            setAddItemOpened(true)
+            setProductPageItem(false)
+        }
+    }, [editProduct]);
+
+    // useEffect(() => {
+    //     if (editProduct) {
+    //         setAddItemOpened(true)
+    //     }
+    // }, [editProduct]);
+
+    
+    if (productPageItem) {
+        return (
+            <div className={styles.container}>
+                <ProductPage item={productPageItem} setProductPageItem={setProductPageItem} setEditProduct={setEditProduct} setProduct={setProduct}/>
+            </div>
+        )
+    }
+
     if (addItemOpened) {
         return (
-            <AddItem setClose={setAddItemOpened}/> 
+            <AddItem setClose={setAddItemOpened} editProduct={editProduct} setProductPageItem={setProductPageItem} setProduct={setProduct} product={product}/> 
         )
     }
 
     if (adminItemsOpened) {
         return (
-            <AdminItems setClose={setAdminItemsOpened}/> 
+            <AdminItems setClose={setAdminItemsOpened} setEditProduct={setEditProduct} setProductPageItem={setProductPageItem} setProduct={setProduct}/> 
         )
     }
 

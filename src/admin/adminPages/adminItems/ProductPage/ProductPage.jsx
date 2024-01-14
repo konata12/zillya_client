@@ -11,8 +11,11 @@ import { Button } from '../../../../components/button/Button';
 // IMAGES
 import weed from '../../../../media/images/weed.png'
 
-export function ProductPage({item, setProductPageItem}) {
+export function ProductPage({ item, setProductPageItem, setEditProduct, setProduct }) {
     // const [item, setItem] = useState(null)
+    console.log('====================================');
+    console.log(item);
+    console.log('====================================');
     const [option, setOption] = useState(0)
 
     const renderChoice = () => {
@@ -21,18 +24,18 @@ export function ProductPage({item, setProductPageItem}) {
 
         return choices?.map((choice, i) => {
             return <span
-                key={choice._id}
-                className={`${option === i ? styles.active : ''}`}
+                key={choice?._id}
+                className={`${option === i ? styles?.active : ''}`}
                 onClick={() => setOption(i)}
             >
-                {choice.option}
+                {choice?.option}
             </span>
         })
     }
 
     const renderDiscountPrice = () => {
-        const price = item?.choice[option].price
-        const discount = item?.choice[option].discount
+        const price = item?.choice?.[option]?.price
+        const discount = item?.choice?.[option]?.discount
 
         const discountPrice = ((100 - discount) / 100) * price
         if (isNaN(discountPrice)) return
@@ -91,15 +94,22 @@ export function ProductPage({item, setProductPageItem}) {
                             {`${renderDiscountPrice()} грн`}
                         </p>
                         {
-                            item?.choice[option].discount !== 0 ? <p className={styles.price_before_discount}>
-                                {`${item?.choice[option].price} грн`}
+                            item?.choice?.[option]?.discount !== 0 ? <p className={styles.price_before_discount}>
+                                {`${item?.choice?.[option]?.price} грн`}
                             </p> : ''
                         }
                     </div>
 
-                    <div className={styles.buttons}>
-                        <Button>
-                            Додати в корзину
+                    <div className={styles.buttons}
+                        onClick={() => {
+                            setEditProduct(item)
+                            setProduct(item)
+                        }}
+                    >
+                        <Button
+                            onClick={() => console.log(item)}
+                        >
+                            Змінити товар
                         </Button>
                     </div>
                 </div>

@@ -9,6 +9,12 @@ export const AddVariant = ({handleAddOption, setAddOptionOpen}) => {
     const [discount, setDiscount] = useState('')
   return (
     <div className={styles.addVarianWrapper}>
+      <div className={styles.close}
+        onClick={() => setAddOptionOpen(false)}
+      >
+        <div className={styles.line} />
+        <div className={`${styles.line}`+` ${styles.fstLine}`} />
+      </div>
         <p className={styles.title}>новий варіант</p>
 
         <div className={styles.inputContainer}>

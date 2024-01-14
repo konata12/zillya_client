@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import Axios from '../../../utils/axios.js';
 import { useEffect } from 'react';
 import { Product } from './product/Product.jsx';
-import { ProductPage } from './ProductPage/ProductPage.jsx'
 
 // STYLES
 import styles from './adminItems.module.scss'
@@ -11,9 +10,8 @@ import mainStyles from '../../styles/index.module.scss'
 
 
 
-export function AdminItems({setClose}) {
+export function AdminItems({setClose, setEditProduct, setProductPageItem }) {
     const [items, setItems] = useState([])
-    const [productPageItem, setProductPageItem] = useState(false)
 
 
     const FetchItems = async () => {
@@ -39,14 +37,6 @@ export function AdminItems({setClose}) {
     useEffect(() => {
         FetchItems()
     }, [])
-
-    if (productPageItem) {
-        return (
-            <div className={styles.container}>
-                <ProductPage item={productPageItem} setProductPageItem={setProductPageItem} />
-            </div>
-        )
-    }
     
     return (
         <div className={styles.container}>
@@ -60,7 +50,7 @@ export function AdminItems({setClose}) {
                 <p className={styles.title}>Усі товари</p>
                 <div className={styles.itemsWrapper}>
                     {items.map((item) => (
-                    <Product product={item} setProductPageItem={setProductPageItem}/>
+                        <Product product={item} setProductPageItem={setProductPageItem} setEditProduct={setEditProduct}/>
                     ))}
                 </div>
             </div>
