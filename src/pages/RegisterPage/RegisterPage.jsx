@@ -89,13 +89,17 @@ export function RegisterPage() {
                     </p>
                 </div>
 
-                <button
-                    className={`btn`}
-                    onClick={handleSubmit}
-                    type='submit'
+                <Link
+                    to={'/verify'}
                 >
-                    Зареєструватись
-                </button>
+                    <button
+                        className={`btn`}
+                        // onClick={handleSubmit}
+                        type='submit'
+                    >
+                        Зареєструватись
+                    </button>
+                </Link>
             </form>
         </div>
     )

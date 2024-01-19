@@ -20,10 +20,6 @@
 
         font-family: $base-font;
         font-size: $main-font-size;
-
-        a {
-            text-decoration: none;
-        }
     }
 
     .title_info {
@@ -59,12 +55,16 @@
         }
     }
 
-    button {
-        padding: 13px 31px;
-        margin-top: 28px;
+    .link {
+        display: block;
 
-        font-family: $reg-font;
-        font-size: $main-font-size;
+        button {
+            padding: 13px 31px;
+            margin-top: 28px;
+    
+            font-family: $reg-font;
+            font-size: $main-font-size;
+        }
     }
 
     .discount {

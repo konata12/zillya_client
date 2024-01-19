@@ -14,6 +14,7 @@ import weed from '../../media/images/weed.png'
 export function ProductPage() {
     const [item, setItem] = useState(null)
     const [option, setOption] = useState(0)
+    const [quantity, setQuantity] = useState(1)
     const { id } = useParams()
 
     const renderChoice = () => {
@@ -53,13 +54,12 @@ export function ProductPage() {
     console.log(item)
     return (
         <div className={styles.container}>
-            <p className={styles.to_shop}>
-                <Link
-                    to={'/shop'}
-                >
-                    <span>{'<'}</span>&#160;<span>{' Назад'}</span>
-                </Link>
-            </p>
+            <Link
+                className={styles.to_shop}
+                to={'/shop'}
+            >
+                <span>{'<'}</span>&#160;<span>{' Назад'}</span>
+            </Link>
 
             <div className={styles.product}>
                 <div className={styles.img}>
@@ -94,6 +94,20 @@ export function ProductPage() {
                                 {`${item?.choice[option].price} грн`}
                             </p> : ''
                         }
+
+                        <div className={styles.quantity}>
+                            <button>
+                                {'<'}
+                            </button>
+                            <input
+                                type="number"
+                                value={quantity}
+                                onChange={e => setQuantity(e.target.value)}
+                            />
+                            <button>
+                                {'>'}
+                            </button>
+                        </div>
                     </div>
 
                     <div className={styles.buttons}>

@@ -1,0 +1,44 @@
+@import '../../styles/variables';
+
+.container {
+
+    .title {
+        font-family: $base-font;
+        font-size: $med-font-size;
+    }
+
+    .items {
+
+    }
+
+    .next_step {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        padding-bottom: 56px;
+
+        .info {
+
+            .price {
+                font-family: $reg-font;
+                font-size: $med-font-size;
+                color: $secondary-font-color;
+
+                span {
+                    color: $secondary-color;
+                }
+            }
+
+            .promo {
+
+            }
+        }
+
+        button {
+            padding: 21px 54px;
+
+            font-family: $reg-font;
+            font-size: $med-font-size;
+        }
+    }
+}

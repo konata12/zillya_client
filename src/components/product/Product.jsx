@@ -12,11 +12,7 @@ export function Product({ id, imgUrl, firstTitle, secondTitle, price, discountPr
         <div className={styles.product}>
             <img src={imgUrl} alt="" />
             <p className={styles.title}>
-                <Link
-                    to={`/product/${id}`}
-                >
-                    {firstTitle}
-                </Link>
+                {firstTitle}
             </p>
             <p className={styles.title_info}>
                 {secondTitle}
@@ -31,9 +27,15 @@ export function Product({ id, imgUrl, firstTitle, secondTitle, price, discountPr
                     {`${discountPrice} грн`}
                 </p>
             </div>
-            <button className={'btn'}>
-                Купити
-            </button>
+            
+            <Link
+                className={styles.link}
+                to={`/product/${id}`}
+            >
+                <button className={'btn'}>
+                    Купити
+                </button>
+            </Link>
 
             {
                 discount > 0 && <p className={styles.discount}>
