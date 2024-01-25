@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import axios from "../../utils/axios";
 
 // STYLES
@@ -10,15 +11,17 @@ import { Button } from '../../components/button/Button';
 
 // IMAGES
 import weed from '../../media/images/weed.png'
+import { addItems } from '../../redux/basket/basketSlice';
 
 export function ProductPage() {
     const [item, setItem] = useState(null)
     const [option, setOption] = useState(0)
     const [quantity, setQuantity] = useState(1)
+
     const { id } = useParams()
+    const dispatch = useDispatch()
 
     const renderChoice = () => {
-        console.log(item?.choice)
         const choices = item?.choice
 
         return choices?.map((choice, i) => {
@@ -41,6 +44,22 @@ export function ProductPage() {
         return discountPrice
     }
 
+    const defineQuantityValue = () => {
+        if (quantity.length === 0) return 1
+        if (quantity.length >= 4) return +quantity.slice(1, 4)
+
+        return +quantity
+    }
+
+    const quantityOnChange = (e) => {
+        if (e.target.value[0] === '-') return
+        setQuantity(e.target.value)
+    }
+
+    const addToBasket = () => {
+        dispatch(addItems({ item, quantity }))
+    }
+
     const fetchItem = useCallback(async () => {
         const { data } = await axios.get(`/items/item/${id}`)
         setItem(data.item)
@@ -50,8 +69,6 @@ export function ProductPage() {
         fetchItem()
     }, [fetchItem])
 
-    console.log(option)
-    console.log(item)
     return (
         <div className={styles.container}>
             <Link
@@ -96,24 +113,39 @@ export function ProductPage() {
                         }
 
                         <div className={styles.quantity}>
-                            <button>
+                            <button
+                                className={styles.decrement}
+                                onClick={() => {
+                                    if ((+quantity - 1) <= 0) return
+                                    setQuantity(+quantity - 1)
+                                }}
+                            >
                                 {'<'}
                             </button>
                             <input
                                 type="number"
-                                value={quantity}
-                                onChange={e => setQuantity(e.target.value)}
+                                value={defineQuantityValue()}
+                                onChange={e => quantityOnChange(e)}
                             />
-                            <button>
+                            <button
+                                className={styles.increment}
+                                onClick={() => {
+                                    if ((+quantity + 1) >= 1000) return
+                                    setQuantity(+quantity + 1)
+                                }}
+                            >
                                 {'>'}
                             </button>
                         </div>
                     </div>
 
                     <div className={styles.buttons}>
-                        <Button>
+                        <button
+                            className={'btn'}
+                            onClick={addToBasket}
+                        >
                             Додати в корзину
-                        </Button>
+                        </button>
                     </div>
                 </div>
             </div>

@@ -66,7 +66,6 @@ export const getMe = createAsyncThunk(
         try {
             const { data } = await axios.get(`/users/user`)
 
-            console.log(data)
             return data
         } catch (error) {
             console.log(error)

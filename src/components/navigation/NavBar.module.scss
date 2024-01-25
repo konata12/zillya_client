@@ -28,14 +28,15 @@
         display: flex;
 
         .exit {
+            display: flex;
             padding: 5px 18px 6px;
             border: none;
             background-color: $secondary-color;
             cursor: pointer;
 
-            a {
-                display: flex;
-            }
+            // a {
+            //     display: flex;
+            // }
         }
 
         .login {

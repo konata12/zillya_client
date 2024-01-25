@@ -52,20 +52,16 @@ export function Navbar() {
             </ul>
 
             <div className={styles.user}>
-                <Link to={'/bucket'}>
+                <Link to={'/basket'}>
                     <img src={bucket} alt="bucket img" />
                 </Link>
                 {
-                    isAuth ? (<button
+                    isAuth ? (<Link
                         className={styles.exit}
-                        onClick={logoutHandler}
+                        to={'/user'}
                     >
-                        <Link
-                            to={'/'}
-                        >
-                            <img src={alien} alt="user" />
-                        </Link>
-                    </button>) : (<Link
+                        <img src={alien} alt="user" />
+                    </Link>) : (<Link
                         to={'/login'}
                         className={styles.login}
                     >

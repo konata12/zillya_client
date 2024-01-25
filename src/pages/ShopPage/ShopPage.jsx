@@ -29,7 +29,7 @@ export function ShopPage() {
             </div>
         }
         return items.map(item => {
-            
+
             return <Product
                 key={item._id}
                 id={item._id}
@@ -47,7 +47,7 @@ export function ShopPage() {
         return <Pagination />
     }
 
-    const handleOpenFilter = ( state, setState, setAnimState ) => {
+    const handleOpenFilter = (state, setState, setAnimState) => {
         if (state) {
             setState(false)
             setAnimState(false)
@@ -57,7 +57,7 @@ export function ShopPage() {
             // setHidePadding(true)
             setAnimState(true)
         }
-        
+
     }
 
     useEffect(() => {

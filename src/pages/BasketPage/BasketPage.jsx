@@ -3,10 +3,11 @@ import { useSelector } from 'react-redux'
 
 // STYLES
 import styles from './BasketPage.module.scss'
+import { BasketProduct } from '../../components/basketProduct/BasketProduct'
 
 export function BasketPage() {
-    const { items, total } = useSelector(state => state.basket)
-    console.log(items, total)
+    const { items, totalPrice } = useSelector(state => state.basket)
+    console.log(items, totalPrice)
 
     return (
         <div className={styles.container}>
@@ -15,7 +16,7 @@ export function BasketPage() {
             </p>
 
             <div className={styles.items}>
-
+                <BasketProduct />
             </div>
 
             <div className={styles.next_step}>
