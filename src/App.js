@@ -20,13 +20,13 @@ import { AdminMain } from './admin/adminMain/AdminMain'
 // EXTENSIONS
 import { Route, Routes } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-// import { getMe } from './redux/auth/authSlice'
+import { getMe } from './redux/auth/authSlice'
 
 function App() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        // dispatch(getMe())
+        dispatch(getMe())
     }, [dispatch])
 
     return (

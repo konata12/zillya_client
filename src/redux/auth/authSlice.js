@@ -70,18 +70,18 @@ export const registerUser = createAsyncThunk(
 )
 
 // AUTO LOGIN IF TOKEN IS IN LOCAL STORAGE
-// export const getMe = createAsyncThunk(
-//     'auth/getMe',
-//     async () => {
-//         try {
-//             const { data } = await axios.get(`/users/user`)
+export const getMe = createAsyncThunk(
+    'auth/getMe',
+    async () => {
+        try {
+            const { data } = await axios.get(`/users/user`)
 
-//             return data
-//         } catch (error) {
-//             console.log(error)
-//         }
-//     }
-// )
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+)
 
 export const authSlice = createSlice({
     name: 'auth',
@@ -163,29 +163,21 @@ export const authSlice = createSlice({
                 console.log(state.status)
             })
 
-        // GET ME
-        // .addCase(getMe.pending, (state) => {
-        //     state.isLoading = true
-        //     state.status = null
-        //     state.staff = false
-        // })
-        // .addCase(getMe.fulfilled, (state, action) => {
-        //     state.isLoading = false
-        //     state.status = action.payload?.status
-        //     state.user = action.payload?.user
-        //     state.token = action.payload?.token
-        //     state.staff = action.payload?.user?.staff
+            // GET ME
+            .addCase(getMe.pending, (state) => {
+                state.isLoading = true
+                state.status = null
+                state.staff = false
+            })
+            .addCase(getMe.fulfilled, (state, action) => {
+                state.isLoading = false
 
-        //     // console.log(state.user)
-        //     // console.log(state.token)
-        // })
-        // .addCase(getMe.rejected, (state, action) => {
-        //     state.isLoading = false
-        //     state.status = action.payload?.status
-        //     state.staff = false
-
-        //     console.log(state.status)
-        // })
+                console.log(action.payload)
+            })
+            .addCase(getMe.rejected, (state, action) => {
+                state.isLoading = false
+                state.staff = false
+            })
     }
 })
 
