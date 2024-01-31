@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { registerUser } from '../../redux/auth/authSlice'
+import { verificateUser } from '../../redux/auth/authSlice'
 
 // STYLES
 import styles from './RegisterPage.module.scss'
@@ -28,12 +28,12 @@ export function RegisterPage() {
             }
             setInvalidPassword(false)
 
-            dispatch(registerUser({ name, surname, password, email }))
+            dispatch(verificateUser({ name, surname, password, email }))
             setName('')
             setSurname('')
             setPassword('')
             setEmail('')
-            navigate('/')
+            // navigate('/')
         } catch (err) {
             console.log(err)
         }
@@ -90,11 +90,11 @@ export function RegisterPage() {
                 </div>
 
                 <Link
-                    to={'/verify'}
+                    // to={'/verify'}
                 >
                     <button
                         className={`btn`}
-                        // onClick={handleSubmit}
+                        onClick={handleSubmit}
                         type='submit'
                     >
                         Зареєструватись

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { AdminItems } from '../adminPages/adminItems/AdminItems'
 import { useDispatch, useSelector } from 'react-redux';
-import { checkIsStaff, getMe } from '../../redux/auth/authSlice';
+import { checkIsStaff } from '../../redux/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { Clients } from '../adminPages/adminClients/clients/Clients';
 import { AddItem } from '../adminPages/adminAddItem/AddItem';
@@ -21,15 +21,15 @@ export function AdminMain() {
     // const [product, setProduct] = useState()
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const isStaff = useSelector(checkIsStaff);  
+    const isStaff = useSelector(checkIsStaff);
 
     useEffect(() => {
-        dispatch(getMe());
+        // dispatch(getMe());
     }, [dispatch]);
 
     useEffect(() => {
         if (!isStaff) {
-          navigate('../admin_login');
+            navigate('../admin_login');
         }
     }, []);
 
@@ -49,30 +49,30 @@ export function AdminMain() {
     //     }
     // }, [editProduct]);
 
-    
+
     if (productPageItem) {
         return (
             <div className={styles.container}>
-                <ProductPage item={productPageItem} setProductPageItem={setProductPageItem} setEditProduct={setEditProduct} setProduct={setProduct}/>
+                <ProductPage item={productPageItem} setProductPageItem={setProductPageItem} setEditProduct={setEditProduct} setProduct={setProduct} />
             </div>
         )
     }
 
     if (addItemOpened) {
         return (
-            <AddItem setClose={setAddItemOpened} editProduct={editProduct} setProductPageItem={setProductPageItem} setProduct={setProduct} product={product}/> 
+            <AddItem setClose={setAddItemOpened} editProduct={editProduct} setProductPageItem={setProductPageItem} setProduct={setProduct} product={product} />
         )
     }
 
     if (adminItemsOpened) {
         return (
-            <AdminItems setClose={setAdminItemsOpened} setEditProduct={setEditProduct} setProductPageItem={setProductPageItem} setProduct={setProduct}/> 
+            <AdminItems setClose={setAdminItemsOpened} setEditProduct={setEditProduct} setProductPageItem={setProductPageItem} setProduct={setProduct} />
         )
     }
 
     if (adminClientsOpened) {
         return (
-            <Clients setClose={setAdminClientsOpened}/> 
+            <Clients setClose={setAdminClientsOpened} />
         )
     }
 
@@ -112,7 +112,7 @@ export function AdminMain() {
                     </p>
                     <div className={styles.buttonsContainer}>
                         <div className={styles.button}
-                             onClick={() => setAdminClientsOpened(true)}
+                            onClick={() => setAdminClientsOpened(true)}
                         ><p>УСІ КЛІЄНТИ</p></div>
                     </div>
                 </div>

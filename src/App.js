@@ -10,6 +10,8 @@ import { LoginPage } from './pages/LoginPage/LoginPage'
 import { RegisterPage } from './pages/RegisterPage/RegisterPage'
 import { UserPage } from './pages/UserPage/UserPage'
 import { VerifyPage } from './pages/VerifyPage/VerifyPage'
+import { VerificatingPage } from './pages/VerificatingPage/VerificatingPage'
+
 
 // ADMIN COMPONENTS
 import { AdminLogin } from './admin/admin_login/AdminLogin'
@@ -18,13 +20,13 @@ import { AdminMain } from './admin/adminMain/AdminMain'
 // EXTENSIONS
 import { Route, Routes } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { getMe } from './redux/auth/authSlice'
+// import { getMe } from './redux/auth/authSlice'
 
 function App() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getMe())
+        // dispatch(getMe())
     }, [dispatch])
 
     return (
@@ -38,6 +40,7 @@ function App() {
                 <Route path='/registration' element={<RegisterPage />} />
                 <Route path='/verify' element={<VerifyPage />} />
                 <Route path='/user' element={<UserPage />} />
+                <Route path='/verificate/:id' element={<VerificatingPage />} />
                 <Route path='/admin_login' element={<AdminLogin />} />
                 <Route path='/admin' element={<AdminMain />} />
             </Routes>

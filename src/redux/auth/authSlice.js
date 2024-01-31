@@ -1,8 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "../../utils/axios";
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
     user: null,
+    userCreated: false,
     token: null,
     isLoading: false,
     status: null,
@@ -10,13 +12,9 @@ const initialState = {
 }
 
 // REDUCERS
-export const registerUser = createAsyncThunk(
+export const verificateUser = createAsyncThunk(
     'auth/registerUser',
     async ({ name, surname, password, email }) => {
-        console.log(name)
-        console.log(surname)
-        console.log(password)
-        console.log(email)
         try {
             const { data } = await axios.post('/users/', {
                 name,
@@ -25,10 +23,11 @@ export const registerUser = createAsyncThunk(
                 email
             })
 
-            if (data.token) {
-                window.localStorage.setItem('token', data.token)
-            }
+            // if (data.token) {
+            //     window.localStorage.setItem('token', data.token)
+            // }
 
+            console.log('verificate')
             console.log(data)
             return data
         } catch (error) {
@@ -59,19 +58,30 @@ export const loginUser = createAsyncThunk(
     }
 )
 
-// AUTO LOGIN IF TOKEN IS IN LOCAL STORAGE
-export const getMe = createAsyncThunk(
-    'auth/getMe',
-    async () => {
-        try {
-            const { data } = await axios.get(`/users/user`)
+export const registerUser = createAsyncThunk(
+    'auth/verificateUser',
+    async ({ id }) => {
+        const { data } = await axios.get(`users/register/${id}`)
 
-            return data
-        } catch (error) {
-            console.log(error)
-        }
+        console.log('register')
+        console.log(data)
+        return data
     }
 )
+
+// AUTO LOGIN IF TOKEN IS IN LOCAL STORAGE
+// export const getMe = createAsyncThunk(
+//     'auth/getMe',
+//     async () => {
+//         try {
+//             const { data } = await axios.get(`/users/user`)
+
+//             return data
+//         } catch (error) {
+//             console.log(error)
+//         }
+//     }
+// )
 
 export const authSlice = createSlice({
     name: 'auth',
@@ -95,16 +105,13 @@ export const authSlice = createSlice({
             })
             .addCase(registerUser.fulfilled, (state, action) => {
                 state.isLoading = false
-                state.user = action.payload.newUser
-                state.token = action.payload.token
                 state.staff = false
 
-                console.log(state.user)
-                console.log(state.token)
+                console.log('fulfilled')
             })
             .addCase(registerUser.rejected, (state, action) => {
                 state.isLoading = false
-                state.status = action.payload.status
+                state.status = action.payload?.status
                 state.staff = false
 
                 console.log(state.status)
@@ -135,29 +142,50 @@ export const authSlice = createSlice({
                 console.log(state.status)
             })
 
-            // GET ME
-            .addCase(getMe.pending, (state) => {
+            // VERIFY USER
+            .addCase(verificateUser.pending, (state) => {
+                console.log('pending')
                 state.isLoading = true
                 state.status = null
                 state.staff = false
             })
-            .addCase(getMe.fulfilled, (state, action) => {
+            .addCase(verificateUser.fulfilled, (state, action) => {
+                console.log('fulfilled')
                 state.isLoading = false
-                state.status = action.payload?.status
-                state.user = action.payload?.user
-                state.token = action.payload?.token
-                state.staff = action.payload?.user?.staff
-
-                // console.log(state.user)
-                // console.log(state.token)
+                state.userCreated = action.payload.userCreated
             })
-            .addCase(getMe.rejected, (state, action) => {
+            .addCase(verificateUser.rejected, (state, action) => {
+                console.log('rejected')
                 state.isLoading = false
                 state.status = action.payload?.status
                 state.staff = false
 
                 console.log(state.status)
             })
+
+        // GET ME
+        // .addCase(getMe.pending, (state) => {
+        //     state.isLoading = true
+        //     state.status = null
+        //     state.staff = false
+        // })
+        // .addCase(getMe.fulfilled, (state, action) => {
+        //     state.isLoading = false
+        //     state.status = action.payload?.status
+        //     state.user = action.payload?.user
+        //     state.token = action.payload?.token
+        //     state.staff = action.payload?.user?.staff
+
+        //     // console.log(state.user)
+        //     // console.log(state.token)
+        // })
+        // .addCase(getMe.rejected, (state, action) => {
+        //     state.isLoading = false
+        //     state.status = action.payload?.status
+        //     state.staff = false
+
+        //     console.log(state.status)
+        // })
     }
 })
 
