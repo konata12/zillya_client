@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "../../utils/axios";
-import { useNavigate } from "react-router-dom";
+import cookies from 'browser-cookies';
 
 const initialState = {
     user: null,
-    userCreated: false,
-    token: null,
+    userActivated: false,
+    session: null,
     isLoading: false,
     status: null,
     staff: false
@@ -69,7 +69,7 @@ export const registerUser = createAsyncThunk(
     }
 )
 
-// AUTO LOGIN IF TOKEN IS IN LOCAL STORAGE
+// AUTO LOGIN IF ACCESS TOKEN IS IN COOKIES AND DOESN'T EXPIRED
 export const getMe = createAsyncThunk(
     'auth/getMe',
     async () => {
@@ -171,8 +171,8 @@ export const authSlice = createSlice({
             })
             .addCase(getMe.fulfilled, (state, action) => {
                 state.isLoading = false
-
-                console.log(action.payload)
+                state.user = action.payload.user
+                state.session = action.payload.session
             })
             .addCase(getMe.rejected, (state, action) => {
                 state.isLoading = false
@@ -181,7 +181,7 @@ export const authSlice = createSlice({
     }
 })
 
-export const checkIsAuth = (state) => Boolean(state.auth.token)
+export const checkIsAuth = () => Boolean(cookies.get('AccessToken'))
 export const checkIsStaff = (state) => Boolean(state.auth?.staff)
 
 export const { logout } = authSlice.actions

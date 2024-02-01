@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink, Link, useNavigate } from 'react-router-dom'
+import cookies from 'browser-cookies';
 
 // STYLES
 import styles from './NavBar.module.scss'
@@ -18,7 +19,7 @@ export function Navbar() {
 
     const logoutHandler = () => {
         dispatch(logout())
-        window.localStorage.removeItem('token')
+        cookies.erase('AccessToken')
         navigate('/')
     }
 

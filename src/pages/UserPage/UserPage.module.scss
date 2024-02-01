@@ -1,0 +1,14 @@
+@import '../../styles/variables';
+
+.container {
+    
+    .title {
+        font-family: $reg-font;
+        font-weight: 900;
+        font-size: $title-font-size;
+
+        span {
+            background-color: $secondary-color;
+        }
+    }
+}
