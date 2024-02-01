@@ -75,6 +75,7 @@ export const itemsSlice = createSlice({
                 state.status = null
             })
             .addCase(getItems.fulfilled, (state, action) => {
+                console.log('fulfilled get items')
                 state.loading = false
                 state.status = action.payload?.status
                 state.items = action.payload?.items

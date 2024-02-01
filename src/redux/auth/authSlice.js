@@ -46,10 +46,7 @@ export const loginUser = createAsyncThunk(
                 email
             })
 
-            if (data.token) {
-                window.localStorage.setItem('token', data.token)
-            }
-
+            console.log('login')
             console.log(data)
             return data
         } catch (error) {
@@ -73,13 +70,11 @@ export const registerUser = createAsyncThunk(
 export const getMe = createAsyncThunk(
     'auth/getMe',
     async () => {
-        try {
-            const { data } = await axios.get(`/users/user`)
+        const { data } = await axios.get(`/users/user`)
 
-            return data
-        } catch (error) {
-            console.log(error)
-        }
+        console.log(data)
+        console.log(data)
+        return data
     }
 )
 
@@ -127,7 +122,6 @@ export const authSlice = createSlice({
                 state.isLoading = false
                 state.status = action.payload.status
                 state.user = action.payload.user
-                state.token = action.payload.token
                 state.staff = action.payload.user?.staff
 
                 console.log(state.user)
@@ -170,13 +164,18 @@ export const authSlice = createSlice({
                 state.staff = false
             })
             .addCase(getMe.fulfilled, (state, action) => {
+                console.log('fulfilled get session')
                 state.isLoading = false
-                state.user = action.payload.user
-                state.session = action.payload.session
+                state.user = action.payload?.user
+                state.session = action.payload?.session
+
+                state.status = action.payload?.message
             })
             .addCase(getMe.rejected, (state, action) => {
+                console.log('rejected get session')
                 state.isLoading = false
                 state.staff = false
+                state.status = action.payload?.message
             })
     }
 })
