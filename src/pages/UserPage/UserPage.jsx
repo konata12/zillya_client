@@ -14,11 +14,17 @@ export function UserPage() {
             <p className={styles.title}>
                 Особистий <span>кабінет</span>
             </p>
-            <div className={styles.info}>
+            <div>
+                <div className={styles.info}>
+                    <p className={styles.info_title}>
 
-            </div>
-            <div className={styles.orders}>
+                    </p>
+                </div>
+                <div className={styles.orders}>
+                    <p className={styles.orders_title}>
 
+                    </p>
+                </div>
             </div>
         </div>
     )

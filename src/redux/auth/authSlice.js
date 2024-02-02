@@ -1,10 +1,9 @@
-import { createAsyncThunk, createSlice, rejectWithValue } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "../../utils/axios";
 import cookies from 'browser-cookies';
 
 const initialState = {
     user: null,
-    userActivated: false,
     session: null,
     staff: false,
 

@@ -7,8 +7,6 @@ export function VerificatingPage() {
     const dispatch = useDispatch()
     const { userCreated } = useSelector(state => state.auth)
     const { id } = useParams()
-    console.log(id)
-    console.log(userCreated)
 
     useEffect(() => {
         dispatch(registerUser(id))
