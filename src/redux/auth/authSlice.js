@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, rejectWithValue } from "@reduxjs/toolkit";
 import axios from "../../utils/axios";
 import cookies from 'browser-cookies';
 
@@ -6,15 +6,16 @@ const initialState = {
     user: null,
     userActivated: false,
     session: null,
+    staff: false,
+
     isLoading: false,
-    status: null,
-    staff: false
+    message: null,
 }
 
 // REDUCERS
 export const verificateUser = createAsyncThunk(
-    'auth/registerUser',
-    async ({ name, surname, password, email }) => {
+    'auth/verificateUser',
+    async ({ name, surname, password, email }, { rejectWithValue }) => {
         try {
             const { data } = await axios.post('/users/', {
                 name,
@@ -23,25 +24,19 @@ export const verificateUser = createAsyncThunk(
                 email
             })
 
-            // if (data.token) {
-            //     window.localStorage.setItem('token', data.token)
-            // }
-
-            console.log('verificate')
-            console.log(data)
             return data
         } catch (error) {
             console.log(error)
+            return rejectWithValue(error.response.data)
         }
     }
 )
 
 export const loginUser = createAsyncThunk(
     'auth/loginUser',
-    async ({ password, email }) => {
+    async ({ password, email }, { rejectWithValue }) => {
         try {
-            console.log({ password, email })
-            const { data } = await axios.post(`/users/${email}`, {
+            const { data } = await axios.post(`/users/login`, {
                 password,
                 email
             })
@@ -51,30 +46,40 @@ export const loginUser = createAsyncThunk(
             return data
         } catch (error) {
             console.log(error)
+            return rejectWithValue(error.response.data)
         }
     }
 )
 
 export const registerUser = createAsyncThunk(
-    'auth/verificateUser',
-    async ({ id }) => {
-        const { data } = await axios.get(`users/register/${id}`)
-
+    'auth/registerUser',
+    async (id, { rejectWithValue }) => {
         console.log('register')
-        console.log(data)
-        return data
+        try {
+            const { data } = await axios.get(`users/register/${id}`)
+
+            return data
+        } catch (error) {
+            console.log(error)
+            return rejectWithValue(error.response.data)
+        }
     }
 )
 
 // AUTO LOGIN IF ACCESS TOKEN IS IN COOKIES AND DOESN'T EXPIRED
 export const getMe = createAsyncThunk(
     'auth/getMe',
-    async () => {
-        const { data } = await axios.get(`/users/user`)
+    async (dupa, { rejectWithValue }) => {
+        console.log('get session')
+        try {
+            const { data } = await axios.get(`/users/user`)
 
-        console.log(data)
-        console.log(data)
-        return data
+            console.log(data)
+            return data
+        } catch (error) {
+            console.log(error)
+            return rejectWithValue(error.response.data)
+        }
     }
 )
 
@@ -92,90 +97,90 @@ export const authSlice = createSlice({
     },
     extraReducers(builder) {
         builder
-            // REGISTER
-            .addCase(registerUser.pending, (state) => {
+            // VERIFY USER EMAIL
+            .addCase(verificateUser.pending, (state) => {
+                state.staff = false
+
                 state.isLoading = true
-                state.status = null
-                state.staff = false
+                state.message = null
             })
-            .addCase(registerUser.fulfilled, (state, action) => {
+            .addCase(verificateUser.fulfilled, (state, action) => {
+                console.log(action.payload)
+
                 state.isLoading = false
+                state.message = action.payload?.message
+            })
+            .addCase(verificateUser.rejected, (state, action) => {
+                console.log(action.payload)
                 state.staff = false
 
-                console.log('fulfilled')
-            })
-            .addCase(registerUser.rejected, (state, action) => {
                 state.isLoading = false
-                state.status = action.payload?.status
-                state.staff = false
-
-                console.log(state.status)
+                state.message = action.payload?.message
             })
 
             // LOGIN
             .addCase(loginUser.pending, (state) => {
-                state.isLoading = true
-                state.status = null
                 state.staff = false
+
+                state.isLoading = true
+                state.message = null
             })
             .addCase(loginUser.fulfilled, (state, action) => {
+                console.log(action.payload)
                 state.isLoading = false
-                state.status = action.payload.status
-                state.user = action.payload.user
-                state.staff = action.payload.user?.staff
-
-                console.log(state.user)
-                console.log(state.staff)
-                console.log(state.token)
+                state.message = action.payload?.message
             })
             .addCase(loginUser.rejected, (state, action) => {
-                state.isLoading = false
-                state.status = action.payload.status
+                console.log(action.payload)
                 state.staff = false
 
-                console.log(state.status)
+                state.isLoading = false
+                state.message = action.payload?.message
             })
 
-            // VERIFY USER
-            .addCase(verificateUser.pending, (state) => {
-                console.log('pending')
+            // REGISTER
+            .addCase(registerUser.pending, (state) => {
+                state.staff = false
+
                 state.isLoading = true
-                state.status = null
-                state.staff = false
+                state.message = null
             })
-            .addCase(verificateUser.fulfilled, (state, action) => {
-                console.log('fulfilled')
-                state.isLoading = false
-                state.userCreated = action.payload.userCreated
-            })
-            .addCase(verificateUser.rejected, (state, action) => {
-                console.log('rejected')
-                state.isLoading = false
-                state.status = action.payload?.status
+            .addCase(registerUser.fulfilled, (state, action) => {
+                console.log(action.payload)
                 state.staff = false
 
-                console.log(state.status)
+                state.isLoading = false
+                state.message = action.payload?.message
+            })
+            .addCase(registerUser.rejected, (state, action) => {
+                console.log(action.payload)
+                state.staff = false
+
+                state.isLoading = false
+                state.message = action.payload?.message
             })
 
             // GET ME
             .addCase(getMe.pending, (state) => {
-                state.isLoading = true
-                state.status = null
                 state.staff = false
+
+                state.isLoading = true
+                state.message = null
             })
             .addCase(getMe.fulfilled, (state, action) => {
-                console.log('fulfilled get session')
-                state.isLoading = false
+                console.log(action.payload)
                 state.user = action.payload?.user
                 state.session = action.payload?.session
 
-                state.status = action.payload?.message
+                state.isLoading = false
+                state.message = action.payload?.message
             })
             .addCase(getMe.rejected, (state, action) => {
-                console.log('rejected get session')
-                state.isLoading = false
+                console.log(action.payload)
                 state.staff = false
-                state.status = action.payload?.message
+
+                state.isLoading = false
+                state.message = action.payload?.message
             })
     }
 })

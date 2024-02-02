@@ -11,7 +11,7 @@ export function VerificatingPage() {
     console.log(userCreated)
 
     useEffect(() => {
-        dispatch(registerUser({ id }))
+        dispatch(registerUser(id))
     }, [dispatch, id])
 
     return (

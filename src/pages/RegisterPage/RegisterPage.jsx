@@ -15,12 +15,10 @@ export function RegisterPage() {
     const [email, setEmail] = useState('')
     const [invalidPassword, setInvalidPassword] = useState(false)
 
-    const navigate = useNavigate()
     const dispatch = useDispatch()
 
     const handleSubmit = () => {
         try {
-            console.log('anus')
             // PASSWORD VALIDATION
             if (password.length < 8) {
                 setInvalidPassword(true)
