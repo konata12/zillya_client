@@ -31,6 +31,7 @@ export const verificateUser = createAsyncThunk(
     }
 )
 
+// LOGIN
 export const loginUser = createAsyncThunk(
     'auth/loginUser',
     async ({ password, email }, { rejectWithValue }) => {
@@ -50,6 +51,24 @@ export const loginUser = createAsyncThunk(
     }
 )
 
+// LOGOUT
+export const logoutUser = createAsyncThunk(
+    'auth/logoutUser',
+    async (dupa, { rejectWithValue }) => {
+        try {
+            const { data } = await axios.post(`/users/logout`)
+
+            console.log('logout')
+            console.log(data)
+            return data
+        } catch (error) {
+            console.log(error)
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
+
+// REGISTER
 export const registerUser = createAsyncThunk(
     'auth/registerUser',
     async (id, { rejectWithValue }) => {
@@ -85,15 +104,7 @@ export const getMe = createAsyncThunk(
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {
-        logout: (state) => {
-            state.user = null
-            state.token = null
-            state.isLoading = false
-            state.status = null
-            state.staff = false
-        }
-    },
+    reducers: {},
     extraReducers(builder) {
         builder
             // VERIFY USER EMAIL
@@ -135,6 +146,24 @@ export const authSlice = createSlice({
 
                 state.isLoading = false
                 state.message = action.payload?.message
+            })
+
+            // LOGOUT
+            .addCase(logoutUser.fulfilled, (state, action) => {
+                console.log(action.payload)
+                state.user = null
+                state.session = null
+                state.isLoading = false
+                state.status = null
+                state.staff = false
+            })
+            .addCase(logoutUser.rejected, (state, action) => {
+                console.log(action.payload)
+                state.user = null
+                state.session = null
+                state.isLoading = false
+                state.status = null
+                state.staff = false
             })
 
             // REGISTER

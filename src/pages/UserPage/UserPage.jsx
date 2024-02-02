@@ -1,29 +1,71 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
+import cookies from 'browser-cookies';
 
 // STYLES
 import styles from './UserPage.module.scss'
 
-export function UserPage() {
-    const { user, session, isLoading } = useSelector(state => state.auth)
+// IMAGES
+import alien from './../../media/images/user_icon.png'
 
+// FUNCTIONS
+import { checkIsAuth, logoutUser } from '../../redux/auth/authSlice'
+
+export function UserPage() {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const isAuth = useSelector(checkIsAuth)
+    const { user, session, isLoading } = useSelector(state => state.auth)
     console.log(user, session, isLoading)
+
+    const logoutHandler = () => {
+        dispatch(logoutUser()).then(() => {
+            cookies.erase('AccessToken')
+            navigate('/')
+        })
+    }
+
+    if (!isAuth) navigate('/login')
 
     return (
         <div className={styles.container}>
-            <p className={styles.title}>
-                Особистий <span>кабінет</span>
-            </p>
-            <div>
+            <div className={styles.top}>
+                <p className={styles.title}>
+                    Особистий <span>кабінет</span>
+                </p>
+
+                <button
+                    className='btn'
+                    onClick={logoutHandler}
+                >
+                    ВИЙТИ
+                </button>
+            </div>
+
+            <div className={styles.user_data}>
                 <div className={styles.info}>
                     <p className={styles.info_title}>
-
+                        Контактна інформація
                     </p>
+
+                    <div className={styles.user}>
+                        <img src={alien} alt="user" />
+                        <p className={styles.name}>
+                            {user?.name + ' ' + user?.surname}
+                        </p>
+
+                        <p className={styles.email}>
+                            {user?.email}
+                        </p>
+                    </div>
                 </div>
                 <div className={styles.orders}>
                     <p className={styles.orders_title}>
-
+                        Мої замовлення
                     </p>
+
                 </div>
             </div>
         </div>

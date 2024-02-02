@@ -1,29 +1,37 @@
 @import '../../styles/variables';
 
 .container {
-    
-    .title {
-        font-family: $reg-font;
-        font-weight: 900;
-        font-size: $title-font-size;
 
-        span {
-            background-color: $secondary-color;
+    .top {
+        display: flex;
+        justify-content: space-between;
+        
+        .title {
+            font-family: $reg-font;
+            font-weight: 900;
+            font-size: $title-font-size;
+    
+            span {
+                background-color: $secondary-color;
+            }
+        }
+
+        button {
+            padding: 10px 21px;
         }
     }
-    
 
-    .info {
 
-        &_title {
+    .user_data {
 
+        .info {
+
+            &_title {}
         }
-    }
 
-    .orders {
+        .orders {
 
-        &_title {
-            
+            &_title {}
         }
     }
 }
