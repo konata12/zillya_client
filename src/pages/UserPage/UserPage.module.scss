@@ -5,12 +5,12 @@
     .top {
         display: flex;
         justify-content: space-between;
-        
+
         .title {
             font-family: $reg-font;
             font-weight: 900;
             font-size: $title-font-size;
-    
+
             span {
                 background-color: $secondary-color;
             }
@@ -23,15 +23,40 @@
 
 
     .user_data {
+        display: flex;
 
         .info {
 
-            &_title {}
+            &_title {
+                font-family: $reg-font;
+                font-size: $med-font-size;
+                color: $secondary-font-color;
+            }
+
+            .user {
+                display: flex;
+                align-items: center;
+
+                p {
+                    font-family: $reg-font;
+                    font-size: $med-font-size;
+                    font-weight: $black-weight
+                };
+            }
+
+            .email {
+                font-family: $reg-font;
+                font-size: $main-font-size;
+            }
         }
 
         .orders {
 
-            &_title {}
+            &_title {
+                font-family: $reg-font;
+                font-size: $med-font-size;
+                color: $secondary-font-color;
+            }
         }
     }
 }

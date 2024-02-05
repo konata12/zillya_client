@@ -9,6 +9,7 @@ import { ProductPage } from './pages/ProductPage/ProductPage'
 import { LoginPage } from './pages/LoginPage/LoginPage'
 import { RegisterPage } from './pages/RegisterPage/RegisterPage'
 import { UserPage } from './pages/UserPage/UserPage'
+import { EditUserPage } from './pages/EditUserPage/EditUserPage'
 import { VerifyPage } from './pages/VerifyPage/VerifyPage'
 import { VerificatingPage } from './pages/VerificatingPage/VerificatingPage'
 
@@ -40,6 +41,7 @@ function App() {
                 <Route path='/registration' element={<RegisterPage />} />
                 <Route path='/verify' element={<VerifyPage />} />
                 <Route path='/user' element={<UserPage />} />
+                <Route path='/user/edit' element={<EditUserPage />} />
                 <Route path='/verificate/:id' element={<VerificatingPage />} />
                 <Route path='/admin_login' element={<AdminLogin />} />
                 <Route path='/admin' element={<AdminMain />} />

@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import cookies from 'browser-cookies';
 
 // STYLES
@@ -24,11 +24,17 @@ export function UserPage() {
         dispatch(logoutUser()).then(() => {
             cookies.erase('AccessToken')
             navigate('/')
+            window.location.reload()
         })
     }
 
-    if (!isAuth) navigate('/login')
+    const renderOrders = () => {
+        return user?.orders
+    }
 
+    useEffect(() => {
+        if (!isAuth) return navigate('/login')
+    })
     return (
         <div className={styles.container}>
             <div className={styles.top}>
@@ -55,17 +61,32 @@ export function UserPage() {
                         <p className={styles.name}>
                             {user?.name + ' ' + user?.surname}
                         </p>
-
-                        <p className={styles.email}>
-                            {user?.email}
-                        </p>
                     </div>
+
+                    <p className={styles.email}>
+                        {user?.email}
+                    </p>
+
+                    <Link
+                        to={'/user/edit'}
+                        className={styles.edit}
+                    >
+                        Редагувати
+                    </Link>
                 </div>
+
                 <div className={styles.orders}>
                     <p className={styles.orders_title}>
                         Мої замовлення
                     </p>
 
+                    <div className={styles.orders}>
+                        {
+                            user?.orders.length === 0 ?
+                                <p>Тут пусто</p> :
+                                renderOrders()
+                        }
+                    </div>
                 </div>
             </div>
         </div>

@@ -31,7 +31,6 @@ export function RegisterPage() {
             setSurname('')
             setPassword('')
             setEmail('')
-            // navigate('/')
         } catch (err) {
             console.log(err)
         }

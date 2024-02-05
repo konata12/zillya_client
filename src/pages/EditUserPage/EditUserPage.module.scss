@@ -1,0 +1,34 @@
+@import '../../styles/variables';
+
+.container {
+
+    .title {
+        font-family: $reg-font;
+        font-size: $title-font-size;
+        font-weight: $black-weight;
+
+        span {
+            color: $base-color;
+        }
+    }
+
+    .inputs {
+
+        input {
+            
+            &:focus {
+                outline: none;
+            }
+
+            &::-webkit-inner-spin-button,
+            &::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            &[type=number] {
+                appearance: textfield;
+            }
+        }
+    }
+}

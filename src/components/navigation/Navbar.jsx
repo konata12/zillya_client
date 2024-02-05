@@ -1,6 +1,5 @@
 import React from 'react'
-import { NavLink, Link, useNavigate } from 'react-router-dom'
-import cookies from 'browser-cookies';
+import { NavLink, Link } from 'react-router-dom'
 
 // STYLES
 import styles from './NavBar.module.scss'
@@ -9,19 +8,11 @@ import styles from './NavBar.module.scss'
 import logo from '../../media/images/logo.svg'
 import bucket from '../../media/images/bucket.svg'
 import alien from '../../media/images/auth.svg'
-import { useDispatch, useSelector } from 'react-redux'
-import { checkIsAuth, logout } from '../../redux/auth/authSlice'
+import { useSelector } from 'react-redux'
+import { checkIsAuth } from '../../redux/auth/authSlice'
 
 export function Navbar() {
     const isAuth = useSelector(checkIsAuth)
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-
-    const logoutHandler = () => {
-        dispatch(logout())
-        cookies.erase('AccessToken')
-        navigate('/')
-    }
 
     return (
         <div className={styles.container}>

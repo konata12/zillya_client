@@ -5,7 +5,7 @@ import { Link, useParams } from 'react-router-dom'
 
 export function VerificatingPage() {
     const dispatch = useDispatch()
-    const { userCreated } = useSelector(state => state.auth)
+    const { user } = useSelector(state => state.auth)
     const { id } = useParams()
 
     useEffect(() => {
@@ -15,12 +15,12 @@ export function VerificatingPage() {
     return (
         <div>
             {
-                userCreated ? <Link
+                user ? <Link
                     to={'/'}
                 >
                     {'http://localhost:3000'}
                 </Link> : <div>
-                    {id}
+                    {'Відбулась помилка активації акаунту'}
                 </div>
             }
         </div>

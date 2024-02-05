@@ -101,6 +101,9 @@ export const getMe = createAsyncThunk(
     }
 )
 
+// EDIT USER DATA
+
+
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
@@ -176,6 +179,7 @@ export const authSlice = createSlice({
             .addCase(registerUser.fulfilled, (state, action) => {
                 console.log(action.payload)
                 state.staff = false
+                state.user = action.payload?.user
 
                 state.isLoading = false
                 state.message = action.payload?.message
