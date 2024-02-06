@@ -10,7 +10,7 @@ import styles from './UserPage.module.scss'
 import alien from './../../media/images/user_icon.png'
 
 // FUNCTIONS
-import { checkIsAuth, logoutUser } from '../../redux/auth/authSlice'
+import { checkIsAuth, getMe, logoutUser } from '../../redux/auth/authSlice'
 
 export function UserPage() {
     const dispatch = useDispatch()

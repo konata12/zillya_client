@@ -140,7 +140,10 @@ export const authSlice = createSlice({
             })
             .addCase(loginUser.fulfilled, (state, action) => {
                 console.log(action.payload)
+
                 state.isLoading = false
+                state.user = action.payload?.user
+                state.session = action.payload?.session
                 state.message = action.payload?.message
             })
             .addCase(loginUser.rejected, (state, action) => {

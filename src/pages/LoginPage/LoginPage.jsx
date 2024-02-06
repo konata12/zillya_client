@@ -17,8 +17,6 @@ export function LoginPage() {
 
     const handleSubmit = () => {
         try {
-            console.log('anus')
-
             dispatch(loginUser({ password, email }))
             setPassword('')
             setEmail('')
