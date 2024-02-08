@@ -2,30 +2,27 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { checkIsAuth } from '../../redux/auth/authSlice'
+import { useForm } from 'react-hook-form'
 
 // STYLES
 import styles from './EditUserPage.module.scss'
 
-export function EditUserPage() {
-    const [name, setName] = useState('')
-    const [surname, setSurname] = useState('')
-    const [phone, setPhone] = useState('')
-    const [city, setCity] = useState('')
-    const [index, setIndex] = useState('')
-    const [street, setStreet] = useState('')
-    const [house, setHouse] = useState('')
-    const [appartment, setAppartment] = useState('')
+// SERVICES
 
+
+export function EditUserPage() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = useForm()
+
     const isAuth = useSelector(checkIsAuth)
 
-    const validateBigFirstLetter = () => {
-
-    }
-
-    const handleSubmit = () => {
+    const onSubmit = () => {
         try {
             dispatch()
         } catch (err) {
@@ -42,64 +39,50 @@ export function EditUserPage() {
                 <span>Редагування</span> інформації
             </p>
 
-            <div className={styles.inputs}>
+            <form className={styles.inputs}>
                 <input
-                    onChange={e => setName(e.target.value)}
-                    value={name}
-                    type="text"
                     className={`input`}
                     placeholder='Ім’я'
+                    type="text"
                 />
                 <input
-                    onChange={e => setSurname(e.target.value)}
-                    value={surname}
                     className={`input`}
                     placeholder='Прізвище'
                     type='text'
                 />
                 <input
-                    onChange={e => setPhone(e.target.value)}
-                    value={phone}
                     className={`input`}
                     placeholder='Номер телефону'
                     type='number'
                 />
                 <input
-                    onChange={e => setCity(e.target.value)}
-                    value={city}
                     className={`input`}
                     placeholder='Місто'
                     type='text'
                 />
                 <input
-                    onChange={e => setIndex(e.target.value)}
-                    value={index}
                     className={`input`}
                     placeholder='Індекс'
                     type='number'
                 />
                 <input
-                    onChange={e => setStreet(e.target.value)}
-                    value={street}
                     className={`input`}
                     placeholder='Вулиця'
                     type='text'
                 />
                 <input
-                    onChange={e => setHouse(e.target.value)}
-                    value={house}
                     className={`input`}
                     placeholder='Номер будинку'
                     type='number'
                 />
                 <input
-                    onChange={e => setAppartment(e.target.value)}
-                    value={appartment}
                     className={`input`}
                     placeholder='Квартира'
                     type='number'
                 />
-            </div>
+
+                <input type="submit" />
+            </form>
         </div>
     )
 }

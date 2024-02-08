@@ -1,41 +1,37 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { verificateUser } from '../../redux/auth/authSlice'
+import { useForm } from "react-hook-form"
 
 // STYLES
 import styles from './RegisterPage.module.scss'
+
+// SERVICES
+import { passwordValidation, nameValidation } from './RegisterPage.services'
 
 // COMPONENTS
 import { Link, useNavigate } from 'react-router-dom'
 
 export function RegisterPage() {
-    const [name, setName] = useState('')
-    const [surname, setSurname] = useState('')
-    const [password, setPassword] = useState('')
-    const [email, setEmail] = useState('')
-    const [invalidPassword, setInvalidPassword] = useState(false)
-
+    const [message, setMessage] = useState('')
     const dispatch = useDispatch()
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = useForm()
 
-    const handleSubmit = () => {
+    const onSubmit = (data) => {
         try {
-            // PASSWORD VALIDATION
-            if (password.length < 8) {
-                setInvalidPassword(true)
-                return
-            }
-            setInvalidPassword(false)
-
+            const { name, surname, password, email } = data
             dispatch(verificateUser({ name, surname, password, email }))
-            setName('')
-            setSurname('')
-            setPassword('')
-            setEmail('')
+            .then((res) => setMessage(res.payload.message))
         } catch (err) {
             console.log(err)
         }
     }
 
+    console.log(message)
     return (
         <div className={styles.registration}>
             <p className={styles.title}>
@@ -46,57 +42,51 @@ export function RegisterPage() {
                 Ви автоматично приймаєте умови <Link to={'/'}>правил магазину</Link> і <Link to={'/'}>політики конфіденційності</Link>
             </p>
 
-            <form onSubmit={e => e.preventDefault()}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <div className={styles.inputs}>
                     <input
-                        onChange={e => setName(e.target.value)}
-                        value={name}
-                        className={`input`}
-                        placeholder='Ім’я'
-                        type='text'
-                        required
+                        className='input'
+                        type='string'
+                        placeholder="Ім'я"
+                        {...register("name", {
+                            required: "name required",
+                            validate: nameValidation
+                        })}
                     />
+                    {errors.name && (<div>{errors.name.message}</div>)}
                     <input
-                        onChange={e => setSurname(e.target.value)}
-                        value={surname}
-                        className={`input`}
-                        placeholder='Прізвище'
-                        type='text'
-                        required
+                        className='input'
+                        type='string'
+                        placeholder="Прізвище"
+                        {...register("surname", {
+                            required: "surmane required",
+                            validate: nameValidation
+                        })}
                     />
+                    {errors.surname && (<div>{errors.surname.message}</div>)}
                     <input
-                        onChange={e => setPassword(e.target.value)}
-                        value={password}
-                        className={`input`}
-                        placeholder='Пароль'
-                        type='password'
-                        required
+                        className='input'
+                        type="password"
+                        placeholder="Пароль"
+                        {...register("password", {
+                            required: "password required",
+                            validate: passwordValidation
+                        })}
                     />
+                    {errors.password && (<div>{errors.password.message}</div>)}
                     <input
-                        onChange={e => setEmail(e.target.value)}
-                        value={email}
-                        className={`input`}
-                        placeholder='Email'
-                        type='email'
-                        required
+                        className='input'
+                        type="email"
+                        placeholder="Електронна пошта"
+                        {...register("email", {
+                            required: 'email required'
+                        })}
                     />
-
-                    <p className={invalidPassword ? styles.invalid : ''}>
-                        Пароль повинен містити не менше 8 символів
-                    </p>
+                    {errors.email && (<div>{errors.email.message}</div>)}
                 </div>
+                <input type="submit" />
 
-                <Link
-                    // to={'/verify'}
-                >
-                    <button
-                        className={`btn`}
-                        onClick={handleSubmit}
-                        type='submit'
-                    >
-                        Зареєструватись
-                    </button>
-                </Link>
+                {message && (<div>{message}</div>)}
             </form>
         </div>
     )
