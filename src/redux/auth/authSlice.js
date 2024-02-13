@@ -117,6 +117,9 @@ export const editUser = createAsyncThunk(
                 house,
                 appartment
             } = user
+
+            console.log({...user})
+
             const { data } = await axios.patch(`/users/user/edit`, {
                 name,
                 surname,
