@@ -107,29 +107,7 @@ export const editUser = createAsyncThunk(
     async (user, { rejectWithValue }) => {
         console.log('get edit user')
         try {
-            const {
-                name,
-                surname,
-                phone,
-                city,
-                index,
-                street,
-                house,
-                appartment
-            } = user
-
-            console.log({...user})
-
-            const { data } = await axios.patch(`/users/user/edit`, {
-                name,
-                surname,
-                phone,
-                city,
-                index,
-                street,
-                house,
-                appartment
-            })
+            const { data } = await axios.patch(`/users/user/edit`, {...user})
 
             console.log(data)
             return data

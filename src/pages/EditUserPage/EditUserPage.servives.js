@@ -59,11 +59,11 @@ export const houseValidation = (value) => {
 }
 
 // APPARTMENT VALIDATION
-const appartmentRegEx = /[\D]/
-export const appartmentValidation = (value) => {
+const apartmentRegEx = /[\D]/
+export const apartmentValidation = (value) => {
     if (value.length === 0) return true
 
-    if (appartmentRegEx.test(value)) return `must contain only digits`
+    if (apartmentRegEx.test(value)) return `must contain only digits`
 
     return true
 }

@@ -9,7 +9,7 @@ import styles from './EditUserPage.module.scss'
 
 // SERVICES
 import {
-    appartmentValidation,
+    apartmentValidation,
     cityValidation,
     houseValidation,
     indexValidation,
@@ -111,20 +111,20 @@ export function EditUserPage() {
                     className={`input`}
                     placeholder='Номер будинку'
                     type='text'
-                    {...register("house", {
+                    {...register("houseNum", {
                         validate: houseValidation
                     })}
                 />
-                {errors.house && (<div>{errors.house.message}</div>)}
+                {errors.house && (<div>{errors.houseNum.message}</div>)}
                 <input
                     className={`input`}
                     placeholder='Квартира'
                     type='text'
-                    {...register("appartment", {
-                        validate: appartmentValidation
+                    {...register("apartment", {
+                        validate: apartmentValidation
                     })}
                 />
-                {errors.appartment && (<div>{errors.appartment.message}</div>)}
+                {errors.appartment && (<div>{errors.apartment.message}</div>)}
 
                 <input
                     className='btn'
