@@ -25,7 +25,7 @@ export function RegisterPage() {
         try {
             const { name, surname, password, email } = data
             dispatch(verificateUser({ name, surname, password, email }))
-            .then((res) => setMessage(res.payload.message))
+                .then((res) => setMessage(res.payload.message))
         } catch (err) {
             console.log(err)
         }
@@ -84,7 +84,11 @@ export function RegisterPage() {
                     />
                     {errors.email && (<div>{errors.email.message}</div>)}
                 </div>
-                <input type="submit" />
+                <input
+                    className='btn'
+                    type="submit"
+                    value='Зареєструватись'
+                />
 
                 {message && (<div>{message}</div>)}
             </form>

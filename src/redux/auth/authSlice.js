@@ -102,7 +102,40 @@ export const getMe = createAsyncThunk(
 )
 
 // EDIT USER DATA
+export const editUser = createAsyncThunk(
+    'auth/editUser',
+    async (user, { rejectWithValue }) => {
+        console.log('get edit user')
+        try {
+            const {
+                name,
+                surname,
+                phone,
+                city,
+                index,
+                street,
+                house,
+                appartment
+            } = user
+            const { data } = await axios.patch(`/users/user/edit`, {
+                name,
+                surname,
+                phone,
+                city,
+                index,
+                street,
+                house,
+                appartment
+            })
 
+            console.log(data)
+            return data
+        } catch (error) {
+            console.log(error)
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
 
 export const authSlice = createSlice({
     name: 'auth',
@@ -211,6 +244,29 @@ export const authSlice = createSlice({
                 state.message = action.payload?.message
             })
             .addCase(getMe.rejected, (state, action) => {
+                console.log(action.payload)
+                state.staff = false
+
+                state.isLoading = false
+                state.message = action.payload?.message
+            })
+
+            // EDIT USER
+            .addCase(editUser.pending, (state) => {
+                state.staff = false
+
+                state.isLoading = true
+                state.message = null
+            })
+            .addCase(editUser.fulfilled, (state, action) => {
+                console.log(action.payload)
+                state.user = action.payload?.user
+                // state.session = action.payload?.session
+
+                state.isLoading = false
+                state.message = action.payload?.message
+            })
+            .addCase(editUser.rejected, (state, action) => {
                 console.log(action.payload)
                 state.staff = false
 
