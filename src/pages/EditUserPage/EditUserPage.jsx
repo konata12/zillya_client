@@ -20,6 +20,7 @@ import {
 
 
 export function EditUserPage() {
+    const [message, setMessage] = useState('')
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -35,6 +36,7 @@ export function EditUserPage() {
         try {
             console.log(data)
             dispatch(editUser(data))
+                .then((res) => setMessage(res.payload.message))
         } catch (err) {
             console.log(err)
         }
@@ -130,6 +132,7 @@ export function EditUserPage() {
                     className='btn'
                     type="submit"
                 />
+                {message && (<div>{message}</div>)}
             </form>
         </div>
     )

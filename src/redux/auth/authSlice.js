@@ -11,12 +11,12 @@ const initialState = {
     message: null,
 }
 
-// REDUCERS
+// REDUCERS AUTH
 export const verificateUser = createAsyncThunk(
     'auth/verificateUser',
     async ({ name, surname, password, email }, { rejectWithValue }) => {
         try {
-            const { data } = await axios.post('/users/', {
+            const { data } = await axios.post('/auth/', {
                 name,
                 surname,
                 password,
@@ -36,7 +36,7 @@ export const loginUser = createAsyncThunk(
     'auth/loginUser',
     async ({ password, email }, { rejectWithValue }) => {
         try {
-            const { data } = await axios.post(`/users/login`, {
+            const { data } = await axios.post(`/auth/login`, {
                 password,
                 email
             })
@@ -56,7 +56,7 @@ export const logoutUser = createAsyncThunk(
     'auth/logoutUser',
     async (dupa, { rejectWithValue }) => {
         try {
-            const { data } = await axios.post(`/users/logout`)
+            const { data } = await axios.post(`/auth/logout`)
 
             console.log('logout')
             console.log(data)
@@ -74,7 +74,7 @@ export const registerUser = createAsyncThunk(
     async (id, { rejectWithValue }) => {
         console.log('register')
         try {
-            const { data } = await axios.get(`users/register/${id}`)
+            const { data } = await axios.get(`auth/register/${id}`)
 
             return data
         } catch (error) {
@@ -90,9 +90,8 @@ export const getMe = createAsyncThunk(
     async (dupa, { rejectWithValue }) => {
         console.log('get session')
         try {
-            const { data } = await axios.get(`/users/user`)
+            const { data } = await axios.get(`/auth/user`)
 
-            console.log(data)
             return data
         } catch (error) {
             console.log(error)
@@ -101,6 +100,7 @@ export const getMe = createAsyncThunk(
     }
 )
 
+// REDUCERS USER
 // EDIT USER DATA
 export const editUser = createAsyncThunk(
     'auth/editUser',
