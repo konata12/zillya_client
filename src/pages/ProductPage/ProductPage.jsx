@@ -11,7 +11,9 @@ import { Button } from '../../components/button/Button';
 
 // IMAGES
 import weed from '../../media/images/weed.png'
-import { addItems } from '../../redux/basket/basketSlice';
+
+// FUNCS
+import { addItemToBasket } from '../../redux/auth/authSlice';
 
 export function ProductPage() {
     const [item, setItem] = useState(null)
@@ -57,7 +59,8 @@ export function ProductPage() {
     }
 
     const addToBasket = () => {
-        dispatch(addItems({ item, quantity }))
+        const itemChoice = item.choice[option]
+        dispatch(addItemToBasket({ itemChoice, quantity }))
     }
 
     const fetchItem = useCallback(async () => {

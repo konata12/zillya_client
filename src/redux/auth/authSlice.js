@@ -4,7 +4,7 @@ import cookies from 'browser-cookies';
 
 const initialState = {
     user: null,
-    session: null,
+    basket: null,
     staff: false,
 
     isLoading: false,
@@ -118,6 +118,24 @@ export const editUser = createAsyncThunk(
     }
 )
 
+// ADD ITEM TO BASKET
+export const addItemToBasket = createAsyncThunk(
+    'auth/addItemToBasket',
+    async (item, { rejectWithValue }) => {
+        console.log('add item to basket')
+        try {
+            console.log(item)
+            const { data } = await axios.patch(`/users/basket/add`, {...item})
+
+            console.log(data)
+            return data
+        } catch (error) {
+            console.log(error)
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
+
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
@@ -157,7 +175,7 @@ export const authSlice = createSlice({
 
                 state.isLoading = false
                 state.user = action.payload?.user
-                state.session = action.payload?.session
+                state.basket = action.payload?.basket
                 state.message = action.payload?.message
             })
             .addCase(loginUser.rejected, (state, action) => {
@@ -219,7 +237,7 @@ export const authSlice = createSlice({
             .addCase(getMe.fulfilled, (state, action) => {
                 console.log(action.payload)
                 state.user = action.payload?.user
-                state.session = action.payload?.session
+                state.basket = action.payload?.basket
 
                 state.isLoading = false
                 state.message = action.payload?.message
@@ -242,12 +260,34 @@ export const authSlice = createSlice({
             .addCase(editUser.fulfilled, (state, action) => {
                 console.log(action.payload)
                 state.user = action.payload?.user
-                // state.session = action.payload?.session
 
                 state.isLoading = false
                 state.message = action.payload?.message
             })
             .addCase(editUser.rejected, (state, action) => {
+                console.log(action.payload)
+                state.staff = false
+
+                state.isLoading = false
+                state.message = action.payload?.message
+            })
+
+            // ADD ITEM TO BASKET
+            .addCase(addItemToBasket.pending, (state) => {
+                state.staff = false
+
+                state.isLoading = true
+                state.message = null
+            })
+            .addCase(addItemToBasket.fulfilled, (state, action) => {
+                console.log(action.payload)
+                state.user = action.payload?.user
+                state.basket = action.payload?.basket
+
+                state.isLoading = false
+                state.message = action.payload?.message
+            })
+            .addCase(addItemToBasket.rejected, (state, action) => {
                 console.log(action.payload)
                 state.staff = false
 
