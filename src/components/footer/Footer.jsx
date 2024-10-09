@@ -26,7 +26,7 @@ export function Footer() {
                         </div>
                         <div className={styles.contacts}>
                             <p>
-                                Ми на зв’язку у будні<span>&#160;з 9.00 до 18.00</span>: +38-096-56-53-199
+                                Ми на зв’язку у будні<span>&#160;з 9.00 до 18.00</span>: +38-000-00-00-000
                             </p>
                             <p>
                                 zilya@gmail.com
